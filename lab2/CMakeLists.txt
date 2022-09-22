@@ -1,10 +1,12 @@
-set(CMAKE_C_STANDARD 11)
+cmake_minimum_required(VERSION 3.22)
 
-add_executable(
-    lab2
-    main.cpp
-    src/lab2.cpp
-    include/lab2.h
+project(lab2)
+
+file(GLOB SOURCES
+    include/*.h
+    src/*.cpp
 )
+
+add_executable(lab2 main.cpp ${SOURCES})
 
 target_include_directories(lab2 PRIVATE include)
