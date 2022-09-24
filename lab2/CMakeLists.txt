@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.22)
 project(lab2)
 
 file(GLOB SOURCES
-    include/*.h
+    include/*.hpp
     src/*.cpp
 )
 
