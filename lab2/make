@@ -17,8 +17,13 @@ cd ${main_dir}
 while [ -n "$1" ]
 do
     case "$1" in
-        -pedantic) rm -fr ${tmp_dir} ;;
-            #clear ;;
+        -clean) rm -fr ${tmp_dir} ;;
+        -pedantic) 
+            rm -rf ${tmp_dir}
+            clear
+            ./${exe_file}
+            rm -rf ${exe_file}
+        ;;
         *) ;;
     esac
     shift
