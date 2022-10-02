@@ -1,45 +1,31 @@
 #include<iostream>
 #include<string>
+#include<set>
+#include<algorithm>
 
-#include<stdlib.h>
+#include<child.hpp>
+
 #include<sys/wait.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include<unistd.h>
-
-std::string Parent()
-{
-    std::string str1;
-
-    std::cin >> str1;
-    
-    return str1;
-}
-
-void Child1(std::string str)
-{
-    std::cout << str << std::endl;
-}
-
-void Child2(std::string str)
-{
-    std::cout << str << std::endl;
-}
 
 int main()
 {
-    std::string str;
-
     int pid = fork();
+    std::string a = "Ae132Yboi";
 
-    if (pid > 0)
-    {
-        std::cout << "Parent " << std::endl;
-        str = Parent();
+    if (pid != 0){
+        wait(&pid);
     }
-    else if (pid == 0)
-    {
-        std::cout << "Child: ";
-        Child1(str);
+    else{
+        RemoveVowels(a);
     }
+
+    for (char elem : a){
+        std::cout << elem << " ";
+    }
+    std::cout << std::endl;
 
     return 0;
 }

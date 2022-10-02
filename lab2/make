@@ -2,7 +2,7 @@
 
 exe_file="lab2"
 main_dir=$(pwd)
-tmp_dir="${main_dir}/template_data"
+tmp_dir="${main_dir}/build"
 
 mkdir ${tmp_dir}
 cd ${tmp_dir}

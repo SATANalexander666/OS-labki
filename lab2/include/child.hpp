@@ -1,0 +1,1 @@
+void RemoveVowels(std::string &str);
