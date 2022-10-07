@@ -17,14 +17,30 @@ cd ${main_dir}
 while [ -n "$1" ]
 do
     case "$1" in
-        -clean) rm -fr ${tmp_dir} ;;
-        -pedantic) 
-            rm -rf ${tmp_dir}
+        -c) 
             clear
-            ./${exe_file}
+        ;;
+        -d)
+            rm -rf ${tmp_dir}
+        ;;
+        -input)
+            input_src="in/$2"
+            ./${exe_file} < ${input_src}
             rm -rf ${exe_file}
         ;;
-        *) ;;
+        -output)
+            output_src="out/$2"
+            ./${exe_file} > ${output_src}
+            rm -rf ${exe_file}
+        ;;
+        -io)
+            input_src="in/$2"
+            output_src="out/$3"
+            ./${exe_file} < ${input_src} > ${output_src}
+        ;;
+        *)
+            
+        ;;
     esac
     shift
 done
