@@ -1,10 +1,13 @@
-#include <gtest/gtest.h>
+#include<gtest/gtest.h>
 
-#include <array>
-#include <filesystem>
-#include <fstream>
-#include <memory>
-#include <string>
+#include<filesystem>
+#include<fstream>
+#include<memory>
+
+#include<array>
+#include<string>
+#include<set>
+#include<algorithm>
 
 namespace fs = std::filesystem;
 
@@ -12,23 +15,21 @@ extern "C" {
     #include <parent.h>
 }
 
-TEST(FirstLabTests, SimpleTest) {
+TEST(FirstLabTests, SimpleTest) 
+{
     const char* fileWithInput = "input.txt";
-    const char* fileWithOutput = "output.txt";
+    const char* fileWithOutput1 = "output1.txt";
+    const char* fileWithOutput2 = "output2.txt";
 
-    constexpr int inputSize = 5;
+    constexpr int inputSize = 3;
 
     std::array<const char*, inputSize> input = {
-        "1234aaron",
-        "aezakmi",
         "Work",
         "labochka",
         "Work"
     };
 
     std::array<const char*, inputSize> expectedOutput = {
-        "1234rn",
-        "zkm",
         "Wrk",
         "lbchk",
         "Wrk"
@@ -37,10 +38,11 @@ TEST(FirstLabTests, SimpleTest) {
     {
         auto inFile = std::ofstream(fileWithInput);
 
-        inFile << fileWithOutput << '\n';
+        inFile << fileWithOutput1 << '\n';
+        inFile << fileWithOutput2 << '\n';
 
-        for(const auto& line : input) {
-            inFile<< line << '\n';
+        for (const auto& line : input) {
+            inFile << line << '\n';
         }
     }
 
@@ -52,15 +54,29 @@ TEST(FirstLabTests, SimpleTest) {
 
     ParentRoutine(inFile.get());
 
-    auto outFile = std::ifstream(fileWithOutput);
+    auto outFile1 = std::ifstream(fileWithOutput1);
+    auto outFile2 = std::ifstream(fileWithOutput2);
 
-    ASSERT_TRUE(outFile.good());
+    ASSERT_TRUE(outFile1.good());
+    ASSERT_TRUE(outFile2.good());
 
     std::string strRes;
-    for(const char* i : expectedOutput)
+    std::vector<std::string> vecRes;
+
+    while (outFile1 >> strRes){
+        vecRes.push_back(strRes);
+    }
+    
+    while (outFile2 >> strRes){
+        vecRes.push_back(strRes);
+    }
+
+    std::stable_sort(vecRes.begin(), vecRes.end());
+    std::stable_sort(expectedOutput.begin(), expectedOutput.end());
+
+    for (int i = 0; i < (int)vecRes.size(); ++i)
     {
-        outFile >> strRes;
-        EXPECT_STREQ(strRes.c_str(), i);
+        EXPECT_STREQ(vecRes[i].c_str(), expectedOutput[i]);
     }
 
     /*
