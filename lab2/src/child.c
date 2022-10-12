@@ -8,6 +8,7 @@ void ChildRoutine(int fd[2])
     close(fd[1]);
 
     char outPath[512];
+
     if (read(fd[0], &outPath, 512) == -1)
     {
         perror("reading from pipe error )");
@@ -15,6 +16,7 @@ void ChildRoutine(int fd[2])
     }
 
     FILE* output = fopen(outPath, "w");
+
     if (output == NULL)
     {
         perror("writing to file error )");

@@ -50,8 +50,17 @@ void ParentRoutine(FILE* input)
         fscanf(input, "%s", outPath1);
         fscanf(input, "%s", outPath2);
 
-        write(fd1[1], &outPath1, 512);
-        write(fd2[1], &outPath2, 512);
+        if (write(fd1[1], &outPath1, 512) == -1)
+        {
+            perror("writing to pipe error )");
+            exit(EXIT_FAILURE);
+        }
+        
+        if (write(fd2[1], &outPath2, 512) == -1)
+        {
+            perror("writing to pipe error )");
+            exit(EXIT_FAILURE);
+        }
 
         char strInput[512];
         int end = 0;
@@ -60,19 +69,46 @@ void ParentRoutine(FILE* input)
         {
             if (ChoosePipe())
             {
-                write(fd1[1], &end, sizeof(int));
-                write(fd1[1], &strInput, 512);
+                if (write(fd1[1], &end, sizeof(int)) == -1)
+                {
+                    perror("writing to pipe error )");
+                    exit(EXIT_FAILURE);
+                }
+
+                if (write(fd1[1], &strInput, 512) == -1)
+                {
+                    perror("writing to pipe error )");
+                    exit(EXIT_FAILURE);
+                }
             }
             else
             {
-                write(fd2[1], &end, sizeof(int));
-                write(fd2[1], &strInput, 512);
+                if (write(fd2[1], &end, sizeof(int)) == -1)
+                {
+                    perror("writing to pipe error )");
+                    exit(EXIT_FAILURE);
+                }
+
+                if (write(fd2[1], &strInput, 512) == -1)
+                {
+                    perror("writing to pipe error )");
+                    exit(EXIT_FAILURE);
+                }
             }
         }
 
         end = 1;
-        write(fd1[1], &end, sizeof(int));
-        write(fd2[1], &end, sizeof(int));
+        if (write(fd1[1], &end, sizeof(int)) == -1)
+        {
+            perror("writing to pipe error )");
+            exit(EXIT_FAILURE);
+        }
+
+        if (write(fd2[1], &end, sizeof(int)) == -1)
+        {
+            perror("writing to pipe error )");
+            exit(EXIT_FAILURE);
+        }
 
         wait(&pid1);
         wait(&pid2);

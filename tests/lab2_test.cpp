@@ -4,7 +4,7 @@
 #include<fstream>
 #include<memory>
 
-#include<array>
+#include<vector>
 #include<string>
 #include<set>
 #include<algorithm>
@@ -15,24 +15,24 @@ extern "C" {
     #include <parent.h>
 }
 
-TEST(FirstLabTests, SimpleTest) 
+TEST(SecondLabTest, TestWithIO) 
 {
     const char* fileWithInput = "input.txt";
     const char* fileWithOutput1 = "output1.txt";
     const char* fileWithOutput2 = "output2.txt";
 
-    constexpr int inputSize = 3;
-
-    std::array<const char*, inputSize> input = {
+    std::vector<std::string> input = {
         "Work",
         "labochka",
-        "Work"
+        "Work",
+        "1234aaron"
     };
 
-    std::array<const char*, inputSize> expectedOutput = {
+    std::vector<std::string> expectedOutput = {
         "Wrk",
         "lbchk",
-        "Wrk"
+        "Wrk",
+        "1234rn"
     };
 
     {
@@ -41,7 +41,7 @@ TEST(FirstLabTests, SimpleTest)
         inFile << fileWithOutput1 << '\n';
         inFile << fileWithOutput2 << '\n';
 
-        for (const auto& line : input) {
+        for (const auto& line : input){
             inFile << line << '\n';
         }
     }
@@ -74,19 +74,9 @@ TEST(FirstLabTests, SimpleTest)
     std::stable_sort(vecRes.begin(), vecRes.end());
     std::stable_sort(expectedOutput.begin(), expectedOutput.end());
 
-    for (int i = 0; i < (int)vecRes.size(); ++i)
-    {
-        EXPECT_STREQ(vecRes[i].c_str(), expectedOutput[i]);
+    ASSERT_TRUE(vecRes.size() == expectedOutput.size());
+
+    for (int i = 0; i < (int)vecRes.size(); ++i){
+        EXPECT_STREQ(vecRes[i].c_str(), expectedOutput[i].c_str());
     }
-
-    /*
-    auto removeIfExists = [](const char* path) {
-        if(fs::exists(path)) {
-            fs::remove(path);
-        }
-    };
-
-    removeIfExists(fileWithInput);
-    removeIfExists(fileWithOutput);
-    */
 }
