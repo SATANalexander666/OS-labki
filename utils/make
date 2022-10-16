@@ -3,7 +3,7 @@
 main_dir=$(pwd)
 build_dir="$(pwd)/build"
 
-#rm -rf ${build_dir}
+rm -rf ${build_dir}
 mkdir ${build_dir}
 cd ${build_dir}
 
