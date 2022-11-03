@@ -1,0 +1,13 @@
+#!/bin/bash
+
+main_dir=$(pwd)
+build_dir="$(pwd)/build"
+
+#rm -rf ${build_dir}
+mkdir ${build_dir}
+cd ${build_dir}
+
+cmake ../
+export PATH_TO_CHILD=/home/axr/prog/OS/main/build/lab2/child
+cmake --build . --target ${1}
+ctest -V
