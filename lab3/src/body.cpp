@@ -88,7 +88,7 @@ void* Merge(void* arguments)
     return NULL;
 }
 
-void TimSort(std::vector<int>* &ptr, const int arrSize, int numOfThreads)
+void TimSort(std::vector<int> &arr, int numOfThreads)
 {
     if (numOfThreads <= 0){
         exit(EXIT_SUCCESS);
@@ -96,8 +96,10 @@ void TimSort(std::vector<int>* &ptr, const int arrSize, int numOfThreads)
 
     std::vector<pthread_t> threads(numOfThreads + 1);
     std::vector<TData> args(numOfThreads + 1);
+    std::vector<int>* ptr = &arr;
 
-    int RUN = arrSize / numOfThreads + 1;
+    int arrSize = arr.size();
+    int run = arrSize / numOfThreads + 1;
 
     if (arrSize < numOfThreads)
     {
@@ -107,8 +109,8 @@ void TimSort(std::vector<int>* &ptr, const int arrSize, int numOfThreads)
 
     for (int i = 0; i < numOfThreads; ++i)
     {
-        args[i].left = i * RUN;
-        args[i].right = std::min(i * RUN + RUN - 1, arrSize - 1);
+        args[i].left = i * run;
+        args[i].right = std::min(i * run + run - 1, arrSize - 1);
         args[i].ptr = ptr;
 
         if (pthread_create(&threads[i], NULL, &InsertionSort, (void*)&args[i]))
@@ -129,7 +131,7 @@ void TimSort(std::vector<int>* &ptr, const int arrSize, int numOfThreads)
     int i = 0;
     int j = 0;
 
-    for (int step = RUN; step < arrSize; step = 2 * step)
+    for (int step = run; step < arrSize; step = 2 * step)
     {
         for (int left = 0; left < arrSize; left += 2 * step)
         {
@@ -157,11 +159,4 @@ void TimSort(std::vector<int>* &ptr, const int arrSize, int numOfThreads)
 
         j = i;
     }
-}
-
-void Routine(std::vector<int> &vec, const int numOfThreads)
-{
-    std::vector<int>* vecPtr = &vec;
-
-    TimSort(vecPtr, vec.size(), numOfThreads);
 }

@@ -16,7 +16,7 @@ int main()
     }
     std::cout << '\n';
 
-    Routine(arr, 2);
+    TimSort(arr, 2);
 
     for (int elem : arr){
         std::cout << elem << " ";

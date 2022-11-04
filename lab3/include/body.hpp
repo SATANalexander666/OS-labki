@@ -7,6 +7,6 @@
 
 #include <iostream>
 
-void Routine(std::vector<int> &vec, int numOfThreads);
+void TimSort(std::vector<int> &arr, int numOfThreads);
 
 #endif
