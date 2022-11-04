@@ -11,6 +11,6 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 
-void ParentRoutine(const char* pathToChild, FILE* input);
+void ParentRoutine(char* pathToChild, FILE* input);
 
 #endif

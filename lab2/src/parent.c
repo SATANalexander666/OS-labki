@@ -5,7 +5,7 @@ int ChoosePipe(){
     return (int)rand() % 100 < 80;
 }
 
-void ParentRoutine(const char* pathToChild, FILE* input)
+void ParentRoutine(char* pathToChild, FILE* input)
 {
     char* outPath1 = ReadString(input);
     char* outPath2 = ReadString(input);
@@ -38,10 +38,8 @@ void ParentRoutine(const char* pathToChild, FILE* input)
         close(fd1[0]);
 
         char *argv[3];
-        argv[0] = malloc(strlen(pathToChild) + 1);
-        strcpy(argv[0], pathToChild);
-        argv[1] = malloc(strlen(outPath1) + 1);
-        strcpy(argv[1], outPath1);
+        argv[0] = pathToChild;
+        argv[1] = outPath1;
         argv[2] = NULL;
 
         if (execv(pathToChild, argv) == -1)
@@ -57,10 +55,8 @@ void ParentRoutine(const char* pathToChild, FILE* input)
         close(fd2[0]);
 
         char *argv[3];
-        argv[0] = malloc(strlen(pathToChild) + 1);
-        strcpy(argv[0], pathToChild);
-        argv[1] = malloc(strlen(outPath1) + 1);
-        strcpy(argv[1], outPath1);
+        argv[0] = pathToChild;
+        argv[1] = outPath2;
         argv[2] = NULL;
 
         if (execv(pathToChild, argv) == -1)
