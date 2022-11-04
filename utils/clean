@@ -9,7 +9,7 @@ then
     cd "${main_dir}/${1}"
 fi
 
-legal_files=$(cat ${legal_dir}/${1})
+legal_files=$(cat ${legal_dir}/${1}.txt)
 all_files=$(ls)
 deleting_files=""
 
