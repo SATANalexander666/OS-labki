@@ -5,21 +5,48 @@ int ChoosePipe(){
     return (int)rand() % 100 < 80;
 }
 
-void ParentRoutine(char* pathToChild, FILE* input)
+void ParentRoutine(char* pathToChild, FILE* fin)
 {
-    char* outPath1 = ReadString(input);
-    char* outPath2 = ReadString(input);
+    char* fileName1 = ReadString(fin);
+    char* fileName2 = ReadString(fin);
+
+    fileName1[strlen(fileName1) - 1] = '\0';
+    fileName2[strlen(fileName2) - 1] = '\0';
+
+    unlink(fileName1);
+    unlink(fileName2);
 
     int fd1[2], fd2[2];
 
     if (pipe(fd1) == -1 || pipe(fd2) == -1)
     {
-        perror("pipe error )");
+        perror("creating pipe error )");
         exit(EXIT_FAILURE);
     }
 
-    int pid1 = fork();
-    int pid2 = 1;
+    pid_t outputFile1, outputFile2;
+
+    if ((outputFile1 = open(fileName1, O_WRONLY | O_CREAT, S_IRWXU)) < 0) 
+    {
+        perror("opening output file 1 error )");
+        exit(EXIT_FAILURE);
+    }
+
+    if ((outputFile2 = open(fileName2, O_WRONLY | O_CREAT, S_IRWXU)) < 0) 
+    {
+        perror("opening output file 2 error )");
+        exit(EXIT_FAILURE);
+    }
+
+    free(fileName1);
+    free(fileName2);
+
+    char* argv[2];
+    argv[0] = "child";
+    argv[1] = NULL;
+
+    pid_t pid1 = fork();
+    pid_t pid2 = 1;
 
     if (pid1 > 0){
         pid2 = fork();
@@ -33,71 +60,71 @@ void ParentRoutine(char* pathToChild, FILE* input)
 
     if (pid1 == 0)
     {
-        close(fd1[1]);
-        dup2(fd1[0], 0);
-        close(fd1[0]);
-
-        char *argv[3];
-        argv[0] = pathToChild;
-        argv[1] = outPath1;
-        argv[2] = NULL;
-
-        if (execv(pathToChild, argv) == -1)
+        if (dup2(fd1[0], 0) < 0)
         {
-            perror("execv error )");
+            perror("duping pipe error )");
             exit(EXIT_FAILURE);
-        }    
+        }
+
+        if (dup2(outputFile1, 1) < 0)
+        {
+            perror("duping output file error )");
+            exit(EXIT_FAILURE);
+        }
+
+        execv(pathToChild, argv);
+        
+        perror("execv error )");
+        exit(EXIT_FAILURE);
     }
     else if (pid2 == 0)
     {
-        close(fd2[1]);
-        dup2(fd2[0], 0);
-        close(fd2[0]);
-
-        char *argv[3];
-        argv[0] = pathToChild;
-        argv[1] = outPath2;
-        argv[2] = NULL;
-
-        if (execv(pathToChild, argv) == -1)
+        if (dup2(fd2[0], 0) < 0)
         {
-            perror("execv error )");
+            perror("duping pipe error )");
             exit(EXIT_FAILURE);
-        }       
+        }
+
+        if (dup2(outputFile2, 1) < 0)
+        {
+            perror("duping output file error )");
+            exit(EXIT_FAILURE);
+        }
+
+        execv(pathToChild, argv);
+        
+        perror("execv error )");
+        exit(EXIT_FAILURE);
     }
     else
     {
-        close(fd1[0]);
-        close(fd2[0]);
+        char* strInput = NULL;
 
-        char *strInput = NULL;
-
-        while ((strInput = ReadString(input)) != NULL)
+        while ((strInput = ReadString(fin)) != NULL)
         {
-            if (ChoosePipe()){
-                if (write(fd1[1], &strInput, strlen(strInput)) == -1)
+            int strSize = strlen(strInput);
+
+            if (strSize > 0)
+            {
+                if (ChoosePipe())
                 {
-                    perror("writing to pipe error )");
-                    exit(EXIT_FAILURE);
+                    write(fd1[1], strInput, strSize);
                 }
-            }
-            else{
-                if (write(fd2[1], &strInput, strlen(strInput)) == -1)
+                else 
                 {
-                    perror("writing to pipe error )");
-                    exit(EXIT_FAILURE);
+                    write(fd2[1], strInput, strSize);
                 }
             }
 
             free(strInput);
         }
 
-        close(fd1[1]);
-        close(fd2[1]);
+        if (strInput == NULL)
+        {
+            char terminator = '\0';
 
-        int status1;
-        int status2;
-        waitpid(pid1, &status1, 0);
-        waitpid(pid2, &status2, 0);
+            write(fd1[1], &terminator, 1);
+            write(fd2[1], &terminator, 1);
+        }
     }
 }

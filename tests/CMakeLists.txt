@@ -15,6 +15,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(lab2_test lab2_test.cpp 
     ../lab2/src/parent.c ../lab2/include/parent.h
+    ../lab2/src/utils.c ../lab2/include/utils.h
 )
 
 target_link_libraries(lab2_test PRIVATE GTest::GTest)

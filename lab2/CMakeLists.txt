@@ -1,5 +1,3 @@
-set(CMAKE_C_STANDARD 11)
-
 add_executable(lab2 main.c
     src/parent.c include/parent.h
     src/utils.c include/utils.h 

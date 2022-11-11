@@ -1,5 +1,5 @@
-#ifndef OS_LABS_PARENT_H
-#define OS_LABS_PARENT_H
+#ifndef PARENT_H
+#define PARENT_H
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -7,11 +7,9 @@ build_dir="$(pwd)/build"
 mkdir ${build_dir}
 cd ${build_dir}
 
-
 cmake ../
-cmake --build . --target ${1}
+cmake --build . --target child
+cmake --build . --target lab2_test
+cmake --build . --target lab3_test
 
-if [[ "$1" = *"test"* ]]
-then
-    ctest -V
-fi
+ctest -V

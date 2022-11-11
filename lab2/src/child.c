@@ -3,57 +3,33 @@
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <errno.h>
+#include <ctype.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
-#include <sys/types.h>
+
 #include "utils.h"
 
 int main(int argc, char* argv[])
 {
-    if (argc < 2)
+    if (argc < 1)
     {
         perror("too few arguments )");
         exit(EXIT_FAILURE);
     }
 
-    char* vowels = {"AEIOUYaeiouy"};
-
-    FILE* output = fopen(argv[1], "w");
-
-    if (output == NULL)
+    if (strlen(argv[0]) < 1)
     {
-        perror("writing to file error )");
+        perror("too few arguments )");
         exit(EXIT_FAILURE);
     }
 
-    char* str = NULL;
+    char* strInput;
 
-    while ((str = ReadString(stdin)) != NULL)
+    while ((strInput = ReadStringWithoutVowels(stdin)) != NULL)
     {
-        for (int i = 0; i < (int)strlen(str); ++i)
-        {
-            int is_vowel = 0;
-
-            for (int j = 0; j < (int)strlen(vowels); ++j){
-                if (str[i] == vowels[j])
-                {
-                    is_vowel = 1;
-                    break;
-                }
-            }
-
-            if (is_vowel == 0){
-                fprintf(output, "%c", str[i]);
-            }
-        }
-
-        fprintf(output, "\n");
-
-        free(str);
+        write(1, strInput, strlen(strInput));
+        free(strInput);
     }
-
-    fclose(output);
 
     return 0;
 }

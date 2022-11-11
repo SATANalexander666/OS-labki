@@ -13,7 +13,7 @@
 namespace fs = std::filesystem;
 
 extern "C" {
-    #include <parent.h>
+    #include "parent.h"
 }
 
 TEST(SecondLabTest, TestWithIO) 
@@ -26,58 +26,77 @@ TEST(SecondLabTest, TestWithIO)
         "Work",
         "labochka",
         "Work",
-        "1234aaron"
+        "1234aaron",
+        "lorem",
+        "ipsum",
+        "dolor",
+        "sit",
+        "amet"
     };
 
     std::vector<std::string> expectedOutput = {
         "Wrk",
         "lbchk",
         "Wrk",
-        "1234rn"
+        "1234rn",
+        "lrm",
+        "psm",
+        "dlr",
+        "st",
+        "mt"
     };
 
-    {
-        auto inFile = std::ofstream(fileWithInput);
+    std::ofstream fout(fileWithInput);
 
-        inFile << fileWithOutput1 << '\n';
-        inFile << fileWithOutput2 << '\n';
+    fout << fileWithOutput1 << '\n';
+    fout << fileWithOutput2 << '\n';
 
-        for (const auto& line : input){
-            inFile << line << '\n';
-        }
+    for (const auto &line : input){
+        fout << line << '\n';
     }
 
-    auto deleter = [](FILE* file) {
-        fclose(file);
-    };
+    fout.close();
 
-    std::unique_ptr<FILE, decltype(deleter)> inFile(fopen(fileWithInput, "r"), deleter);
+    FILE* fin = fopen(fileWithInput, "r");
+
+    ParentRoutine(getenv("PATH_TO_CHILD"), fin);
+
+    fclose(fin);
+
+    std::ifstream fin1(fileWithOutput1);
+    std::ifstream fin2(fileWithOutput2);
     
-    ParentRoutine(getenv("PATH_TO_CHILD"), inFile.get());
-
-    auto outFile1 = std::ifstream(fileWithOutput1);
-    auto outFile2 = std::ifstream(fileWithOutput2);
-
-    ASSERT_TRUE(outFile1.good());
-    ASSERT_TRUE(outFile2.good());
+    ASSERT_TRUE(fin1.good());
+    ASSERT_TRUE(fin2.good());
 
     std::string strRes;
     std::vector<std::string> vecRes;
 
-    while (outFile1 >> strRes){
+    while (fin1 >> strRes){
         vecRes.push_back(strRes);
     }
     
-    while (outFile2 >> strRes){
+    while (fin2 >> strRes){
         vecRes.push_back(strRes);
     }
+
+    fin1.close();
+    fin2.close();
 
     std::stable_sort(vecRes.begin(), vecRes.end());
     std::stable_sort(expectedOutput.begin(), expectedOutput.end());
 
-    ASSERT_TRUE(vecRes.size() == expectedOutput.size());
-
     for (int i = 0; i < (int)vecRes.size(); ++i){
-        EXPECT_STREQ(vecRes[i].c_str(), expectedOutput[i].c_str());
+        EXPECT_EQ(vecRes[i].c_str(), expectedOutput[i].c_str());
     }
+
+    auto removeIfExists = [](const char* path) {
+        if (fs::exists(path)) {
+            fs::remove(path);
+        }
+    };
+
+    removeIfExists(fileWithInput);
+    removeIfExists(fileWithOutput1);
+    removeIfExists(fileWithOutput2);
 }
