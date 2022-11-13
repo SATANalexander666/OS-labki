@@ -60,6 +60,8 @@ void ParentRoutine(char* pathToChild, FILE* fin)
 
     if (pid1 == 0)
     {
+        close(fd1[1]);
+
         if (dup2(fd1[0], 0) < 0)
         {
             perror("duping pipe error )");
@@ -73,12 +75,14 @@ void ParentRoutine(char* pathToChild, FILE* fin)
         }
 
         execv(pathToChild, argv);
-        
-        perror("execv error )");
-        exit(EXIT_FAILURE);
+
+        //perror("execv error )");
+        //exit(EXIT_FAILURE);
     }
     else if (pid2 == 0)
     {
+        close(fd2[1]);
+
         if (dup2(fd2[0], 0) < 0)
         {
             perror("duping pipe error )");
@@ -92,12 +96,15 @@ void ParentRoutine(char* pathToChild, FILE* fin)
         }
 
         execv(pathToChild, argv);
-        
-        perror("execv error )");
-        exit(EXIT_FAILURE);
+
+        //perror("execv error )");
+        //exit(EXIT_FAILURE);
     }
     else
     {
+        close(fd1[0]);
+        close(fd2[0]);
+
         char* strInput = NULL;
 
         while ((strInput = ReadString(fin)) != NULL)
@@ -126,5 +133,8 @@ void ParentRoutine(char* pathToChild, FILE* fin)
             write(fd1[1], &terminator, 1);
             write(fd2[1], &terminator, 1);
         }
+
+        close(fd1[1]);
+        close(fd2[1]);
     }
 }

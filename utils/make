@@ -7,8 +7,6 @@ build_dir="$(pwd)/build"
 mkdir ${build_dir}
 cd ${build_dir}
 
-export PATH_TO_CHILD="home/axr/prog/OS/main/build/lab2/child"
-
 cmake ../
 cmake --build . --target child
 cmake --build . --target lab2_test
