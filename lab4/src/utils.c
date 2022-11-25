@@ -39,53 +39,41 @@ char* ReadString(FILE* stream)
     return buffer;
 }
 
-char* ReadStringWithoutVowels(FILE* stream) 
+int ChoosePipe(char* str)
 {
-    if(feof(stream)) {
-        return NULL;
-    }
-
-    const int chunkSize = 256;
-    char* buffer = (char*)malloc(chunkSize);
-    int bufferSize = chunkSize;
-
-    if(buffer == NULL) 
-    {
-        printf("Couldn't allocate buffer");
-        exit(EXIT_FAILURE);
-    }
-
-    int readChar;
-    int idx = 0;
-
     char* vowels = {"AEIOUYaeiouy"};
+    int vowelsCnt = 0;
 
-    while ((readChar = getc(stream)) != EOF) 
+    char* consonants = {
+        "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz"
+    };
+    int consonantsCnt = 0;
+
+    for (int i = 0; i < (int)strlen(str); ++i)
     {
         int isVowel = 0;
 
-        for (int i = 0; i < (int)strlen(vowels); ++i){
-            if (readChar == vowels[i]){
+        for (int j = 0; j < (int)strlen(vowels); ++j){
+            if (str[i] == vowels[j])
+            {
+                ++vowelsCnt;
                 isVowel = 1;
+                break;
             }
         }
 
-        if (isVowel == 0){
-            buffer[idx++] = readChar;
+        if (isVowel){
+            continue;
         }
 
-        if (idx == bufferSize) 
-        {
-            buffer = realloc(buffer, bufferSize + chunkSize);
-            bufferSize += chunkSize;
-        }
-
-        if (readChar == '\n') {
-            break;
+        for (int j = 0; j < (int)strlen(consonants); ++j){
+            if (str[i] == consonants[j])
+            {
+                ++consonantsCnt;
+                break;
+            }
         }
     }
 
-    buffer[idx] = '\0';
-
-    return buffer;
+    return vowelsCnt > consonantsCnt;
 }

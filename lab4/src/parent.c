@@ -1,48 +1,7 @@
 #include "parent.h"
 #include "utils.h"
 
-#include <string.h>
-
-int ChoosePipe(char* str)
-{
-    char* vowels = {"AEIOUYaeiouy"};
-    int vowelsCnt = 0;
-
-    char* consonants = {
-        "BCDFGHJKLMNPQRSTVWXYZbcdfghjklmnpqrstvwxyz"
-    };
-    int consonantsCnt = 0;
-
-    for (int i = 0; i < (int)strlen(str); ++i)
-    {
-        int isVowel = 0;
-
-        for (int j = 0; j < (int)strlen(vowels); ++j){
-            if (str[i] == vowels[j])
-            {
-                ++vowelsCnt;
-                isVowel = 1;
-                break;
-            }
-        }
-
-        if (isVowel){
-            continue;
-        }
-
-        for (int j = 0; j < (int)strlen(consonants); ++j){
-            if (str[i] == consonants[j])
-            {
-                ++consonantsCnt;
-                break;
-            }
-        }
-    }
-
-    return vowelsCnt > consonantsCnt;
-}
-
-void ParentRoutine(char* pathToChild, FILE* fin)
+void ParentRoutine(FILE* fin)
 {
     char* fileName1 = ReadString(fin);
     char* fileName2 = ReadString(fin);
@@ -52,14 +11,6 @@ void ParentRoutine(char* pathToChild, FILE* fin)
 
     unlink(fileName1);
     unlink(fileName2);
-
-    int fd1[2], fd2[2];
-
-    if (pipe(fd1) == -1 || pipe(fd2) == -1)
-    {
-        perror("creating pipe error )");
-        exit(EXIT_FAILURE);
-    }
 
     pid_t outputFile1, outputFile2;
 
@@ -78,9 +29,12 @@ void ParentRoutine(char* pathToChild, FILE* fin)
     free(fileName1);
     free(fileName2);
 
-    char* argv[2];
-    argv[0] = "child";
-    argv[1] = NULL;
+    const int mapSize = 128;
+
+    void* map1 = mmap(0, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, 0, 0);
+    void* map2 = mmap(0, mapSize, PROT_READ | PROT_WRITE, MAP_SHARED | MAP_ANONYMOUS, 0, 0);
+
+    const char* vowels = {"AEIOUYaeiouy"};
 
     pid_t pid1 = fork();
     pid_t pid2 = 1;
@@ -91,87 +45,127 @@ void ParentRoutine(char* pathToChild, FILE* fin)
 
     if (pid1 < 0 || pid2 < 0)
     {
-        perror("process error )");
+        perror("Creating process error )");
         exit(EXIT_FAILURE);
     }
 
-    if (pid1 == 0)
+    if (pid1 == 0) 
     {
-        close(fd1[1]);
-
-        if (dup2(fd1[0], 0) < 0)
-        {
-            perror("duping pipe error )");
-            exit(EXIT_FAILURE);
-        }
-
         if (dup2(outputFile1, 1) < 0)
         {
-            perror("duping output file error )");
+            perror("dup2() error )");
             exit(EXIT_FAILURE);
         }
 
-        execv(pathToChild, argv);
+        char* str = (char*)malloc(mapSize);
 
-        //perror("execv error )");
-        //exit(EXIT_FAILURE);
-    }
-    else if (pid2 == 0)
-    {
-        close(fd2[1]);
+        msync(map1, mapSize, MS_SYNC);
+        memcpy(str, map1, mapSize);
 
-        if (dup2(fd2[0], 0) < 0)
+        for (int i = 0; i < (int)strlen(str); ++i)
         {
-            perror("duping pipe error )");
-            exit(EXIT_FAILURE);
-        }
+            int isVowel = 0;
 
-        if (dup2(outputFile2, 1) < 0)
-        {
-            perror("duping output file error )");
-            exit(EXIT_FAILURE);
-        }
-
-        execv(pathToChild, argv);
-
-        //perror("execv error )");
-        //exit(EXIT_FAILURE);
-    }
-    else
-    {
-        close(fd1[0]);
-        close(fd2[0]);
-
-        char* strInput = NULL;
-
-        while ((strInput = ReadString(fin)) != NULL)
-        {
-            int strSize = strlen(strInput);
-
-            if (strSize > 0)
-            {
-                if (ChoosePipe(strInput))
+            for (int j = 0; j < (int)strlen(vowels); ++j){
+                if (str[i] == vowels[j])
                 {
-                    write(fd1[1], strInput, strSize);
-                }
-                else 
-                {
-                    write(fd2[1], strInput, strSize);
+                    isVowel = 1;
+                    break;
                 }
             }
 
-            free(strInput);
+            if (isVowel == 0) {
+                printf("%c", str[i]);
+            }
         }
-
-        if (strInput == NULL)
-        {
-            char terminator = '\0';
-
-            write(fd1[1], &terminator, 1);
-            write(fd2[1], &terminator, 1);
-        }
-
-        close(fd1[1]);
-        close(fd2[1]);
     }
+    else if (pid2 == 0)
+    {
+        if (dup2(outputFile2, 1) < 0)
+        {
+            perror("dup2() error )");
+            exit(EXIT_FAILURE);
+        }
+
+        char* str = (char*)malloc(mapSize);
+
+        msync(map2, mapSize, MS_SYNC);
+        memcpy(str, map2, mapSize);
+
+        for (int i = 0; i < (int)strlen(str); ++i)
+        {
+            int isVowel = 0;
+
+            for (int j = 0; j < (int)strlen(vowels); ++j){
+                if (str[i] == vowels[j])
+                {
+                    isVowel = 1;
+                    break;
+                }
+            }
+
+            if (isVowel == 0) {
+                printf("%c", str[i]);
+            }
+        }
+    }
+    else 
+    {
+        char* strInput = NULL;
+
+        const int chunkSize = 16;
+
+        int bufferSize1 = chunkSize;
+        int freeSpace1 = bufferSize1;
+
+        char* buffer1 = (char*)malloc(chunkSize);
+
+        int bufferSize2 = chunkSize;
+        int freeSpace2 = bufferSize2;
+
+        char* buffer2 = (char*)malloc(chunkSize);
+
+        while ((strInput = ReadString(fin)) != NULL)
+        {
+            if (ChoosePipe(strInput))
+            {
+                while (freeSpace1 < (int)strlen(strInput))
+                {
+                    buffer1 = (char*)realloc(buffer1, bufferSize1 + chunkSize);
+
+                    bufferSize1 += chunkSize;
+                    freeSpace1 += chunkSize;
+                }
+
+                strcat(buffer1, strInput);
+                freeSpace1 -= strlen(strInput);
+
+                free(strInput);
+            }
+            else
+            {
+                while (freeSpace2 < (int)strlen(strInput))
+                {
+                    buffer2 = (char*)realloc(buffer2, bufferSize2 + chunkSize);
+
+                    bufferSize2 += chunkSize;
+                    freeSpace2 += chunkSize;
+                }
+
+                strcat(buffer2, strInput);
+                freeSpace2 -= strlen(strInput);
+
+                free(strInput);
+            }
+        }
+
+        memcpy(map1, buffer1, strlen(buffer1));
+        msync(map1, mapSize, MS_SYNC);
+
+        memcpy(map2, buffer2, strlen(buffer2));
+        msync(map2, mapSize, MS_SYNC);
+    }
+
+    munmap(map1, mapSize);
+    munmap(map2, mapSize);
 }

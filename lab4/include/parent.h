@@ -10,7 +10,8 @@
 #include <sys/wait.h>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <sys/mman.h>
 
-void ParentRoutine(char* pathToChild, FILE* input);
+void ParentRoutine(FILE* input);
 
 #endif

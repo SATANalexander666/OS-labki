@@ -1,10 +1,8 @@
 #include "parent.h"
 
-#include <stdio.h>
-
 int main()
 {
-    ParentRoutine(getenv("PATH_TO_CHILD"), stdin);
+    ParentRoutine(stdin);
 
     return 0;
 }

@@ -11,6 +11,5 @@ cmake ${main_dir}
 make
 
 mv ${exe_file} ${main_dir}
-mv child ${main_dir}
 
 cd ${main_dir}
