@@ -8,8 +8,10 @@ mkdir ${build_dir}
 cd ${build_dir}
 
 cmake ../
+#make
 cmake --build . --target child
 cmake --build . --target lab2_test
 cmake --build . --target lab3_test
+cmake --build . --target lab4_test
 
 ctest -V

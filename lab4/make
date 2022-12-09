@@ -1,0 +1,15 @@
+#!/bin/bash
+
+exe_file="lab4"
+main_dir=$(pwd)
+tmp_dir="${main_dir}/build"
+
+mkdir ${tmp_dir}
+cd ${tmp_dir}
+
+cmake ${main_dir}
+make
+
+mv ${exe_file} ${main_dir}
+
+cd ${main_dir}
