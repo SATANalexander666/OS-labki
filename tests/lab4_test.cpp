@@ -29,7 +29,7 @@ TEST(FourthLabTest, TestWithIO)
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapch-hi",
         "sit",
         "boooob",
-        "1234pyaat"
+        "1234pyaat",
         "amet",
         "ameet",
         "a",

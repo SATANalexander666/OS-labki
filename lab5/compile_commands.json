@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab5/build",
+  "command": "/usr/bin/cc -Ddynamic1_EXPORTS -I/home/axr/prog/study/OS/main/lab5/include -fPIC -o CMakeFiles/dynamic1.dir/src/lib1.o -c /home/axr/prog/study/OS/main/lab5/src/lib1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab5/build",
+  "command": "/usr/bin/cc -Ddynamic2_EXPORTS -I/home/axr/prog/study/OS/main/lab5/include -fPIC -o CMakeFiles/dynamic2.dir/src/lib2.o -c /home/axr/prog/study/OS/main/lab5/src/lib2.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib2.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab5/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include  -o CMakeFiles/program1-1.dir/src/program1.o -c /home/axr/prog/study/OS/main/lab5/src/program1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab5/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include  -o CMakeFiles/program1-2.dir/src/program1.o -c /home/axr/prog/study/OS/main/lab5/src/program1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab5/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include  -o CMakeFiles/program2.dir/src/program2.o -c /home/axr/prog/study/OS/main/lab5/src/program2.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program2.c"
+}
+]

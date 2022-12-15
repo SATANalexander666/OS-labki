@@ -1,0 +1,17 @@
+add_library(dynamic1 SHARED src/lib1.c)
+add_library(dynamic2 SHARED src/lib2.c)
+target_include_directories(dynamic1 PRIVATE include)
+target_include_directories(dynamic2 PRIVATE include)
+target_link_libraries(dynamic1 m)
+target_link_libraries(dynamic2 m)
+
+add_executable(program1-1 src/program1.c include/libLab5.h)
+add_executable(program1-2 src/program1.c include/libLab5.h)
+target_include_directories(program1-1 PRIVATE include)
+target_include_directories(program1-2 PRIVATE include)
+target_link_libraries(program1-1 PRIVATE dynamic1)
+target_link_libraries(program1-2 PRIVATE dynamic2)
+
+add_executable(program2 src/program2.c)
+target_link_libraries(program2 ${CMAKE_DL_LIBS})
+target_include_directories(program2 PRIVATE include)

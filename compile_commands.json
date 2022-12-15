@@ -1,122 +1,167 @@
 [
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab2",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/child.dir/src/child.c.o -c /home/axr/prog/study/OS/main/lab2/src/child.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/child.dir/src/child.c.o -c /home/axr/prog/study/OS/main/lab2/src/child.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/child.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab2",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/child.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/child.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/utils.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab2",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/main.c.o -c /home/axr/prog/study/OS/main/lab2/main.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/main.c.o -c /home/axr/prog/study/OS/main/lab2/main.c",
   "file": "/home/axr/prog/study/OS/main/lab2/main.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab2",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/src/parent.c.o -c /home/axr/prog/study/OS/main/lab2/src/parent.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/src/parent.c.o -c /home/axr/prog/study/OS/main/lab2/src/parent.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/parent.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab2",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/utils.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab3",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/main.cpp.o -c /home/axr/prog/study/OS/main/lab3/main.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/main.cpp.o -c /home/axr/prog/study/OS/main/lab3/main.cpp",
   "file": "/home/axr/prog/study/OS/main/lab3/main.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab3",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/src/body.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/body.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/src/body.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/body.cpp",
   "file": "/home/axr/prog/study/OS/main/lab3/src/body.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab3",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/src/utils.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/utils.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include -Wall -Wextra -pedantic -Werror -o CMakeFiles/lab3.dir/src/utils.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/utils.cpp",
   "file": "/home/axr/prog/study/OS/main/lab3/src/utils.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab4",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/main.c.o -c /home/axr/prog/study/OS/main/lab4/main.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/main.c.o -c /home/axr/prog/study/OS/main/lab4/main.c",
   "file": "/home/axr/prog/study/OS/main/lab4/main.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab4",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/src/parent.c.o -c /home/axr/prog/study/OS/main/lab4/src/parent.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/src/parent.c.o -c /home/axr/prog/study/OS/main/lab4/src/parent.c",
   "file": "/home/axr/prog/study/OS/main/lab4/src/parent.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/lab4",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab4/src/utils.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4.dir/src/utils.c.o -c /home/axr/prog/study/OS/main/lab4/src/utils.c",
   "file": "/home/axr/prog/study/OS/main/lab4/src/utils.c"
 },
 {
+  "directory": "/home/axr/prog/study/OS/main/build/lab5",
+  "command": "/usr/bin/cc -Ddynamic1_EXPORTS -I/home/axr/prog/study/OS/main/lab5/include -fPIC -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/dynamic1.dir/src/lib1.c.o -c /home/axr/prog/study/OS/main/lab5/src/lib1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/lab5",
+  "command": "/usr/bin/cc -Ddynamic2_EXPORTS -I/home/axr/prog/study/OS/main/lab5/include -fPIC -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/dynamic2.dir/src/lib2.c.o -c /home/axr/prog/study/OS/main/lab5/src/lib2.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib2.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/lab5",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/program1-1.dir/src/program1.c.o -c /home/axr/prog/study/OS/main/lab5/src/program1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/lab5",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/program1-2.dir/src/program1.c.o -c /home/axr/prog/study/OS/main/lab5/src/program1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/lab5",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab5/include -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/program2.dir/src/program2.c.o -c /home/axr/prog/study/OS/main/lab5/src/program2.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/program2.c"
+},
+{
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab2_test.dir/lab2_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab2_test.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab2_test.dir/lab2_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab2_test.cpp",
   "file": "/home/axr/prog/study/OS/main/tests/lab2_test.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2_test.dir/__/lab2/src/parent.c.o -c /home/axr/prog/study/OS/main/lab2/src/parent.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2_test.dir/__/lab2/src/parent.c.o -c /home/axr/prog/study/OS/main/lab2/src/parent.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/parent.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2_test.dir/__/lab2/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab2/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab2_test.dir/__/lab2/src/utils.c.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
   "file": "/home/axr/prog/study/OS/main/lab2/src/utils.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/lab3_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab3_test.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/lab3_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab3_test.cpp",
   "file": "/home/axr/prog/study/OS/main/tests/lab3_test.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/__/lab3/src/utils.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/utils.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/__/lab3/src/utils.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/utils.cpp",
   "file": "/home/axr/prog/study/OS/main/lab3/src/utils.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/__/lab3/src/body.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/body.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab3/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab3_test.dir/__/lab3/src/body.cpp.o -c /home/axr/prog/study/OS/main/lab3/src/body.cpp",
   "file": "/home/axr/prog/study/OS/main/lab3/src/body.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab4_test.dir/lab4_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab4_test.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab4_test.dir/lab4_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab4_test.cpp",
   "file": "/home/axr/prog/study/OS/main/tests/lab4_test.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4_test.dir/__/lab4/src/parent.c.o -c /home/axr/prog/study/OS/main/lab4/src/parent.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4_test.dir/__/lab4/src/parent.c.o -c /home/axr/prog/study/OS/main/lab4/src/parent.c",
   "file": "/home/axr/prog/study/OS/main/lab4/src/parent.c"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/tests",
-  "command": "/usr/bin/clang  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4_test.dir/__/lab4/src/utils.c.o -c /home/axr/prog/study/OS/main/lab4/src/utils.c",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab4/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab4_test.dir/__/lab4/src/utils.c.o -c /home/axr/prog/study/OS/main/lab4/src/utils.c",
   "file": "/home/axr/prog/study/OS/main/lab4/src/utils.c"
 },
 {
+  "directory": "/home/axr/prog/study/OS/main/build/tests",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab5/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab5_1_test.dir/lab5_1_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab5_1_test.cpp",
+  "file": "/home/axr/prog/study/OS/main/tests/lab5_1_test.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/tests",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab5/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab5_1_test.dir/__/lab5/src/lib1.c.o -c /home/axr/prog/study/OS/main/lab5/src/lib1.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib1.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/tests",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/tests/../lab5/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu++17 -o CMakeFiles/lab5_2_test.dir/lab5_2_test.cpp.o -c /home/axr/prog/study/OS/main/tests/lab5_2_test.cpp",
+  "file": "/home/axr/prog/study/OS/main/tests/lab5_2_test.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/build/tests",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/tests/../lab5/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wextra -pedantic -Werror -std=gnu11 -o CMakeFiles/lab5_2_test.dir/__/lab5/src/lib2.c.o -c /home/axr/prog/study/OS/main/lab5/src/lib2.c",
+  "file": "/home/axr/prog/study/OS/main/lab5/src/lib2.c"
+},
+{
   "directory": "/home/axr/prog/study/OS/main/build/_deps/googletest-build/googlemock",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/include -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wconversion -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Wchar-subscripts -Winline -Wredundant-decls -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/include -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock-all.cc",
   "file": "/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock-all.cc"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/_deps/googletest-build/googlemock",
-  "command": "/usr/bin/clang++  -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wconversion -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Wchar-subscripts -Winline -Wredundant-decls -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
+  "command": "/usr/bin/c++  -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock_main.cc",
   "file": "/home/axr/prog/study/OS/main/build/_deps/googletest-src/googlemock/src/gmock_main.cc"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/_deps/googletest-build/googletest",
-  "command": "/usr/bin/clang++  -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wconversion -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Wchar-subscripts -Winline -Wredundant-decls -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest-all.cc",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -I/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest-all.cc",
   "file": "/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest-all.cc"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/build/_deps/googletest-build/googletest",
-  "command": "/usr/bin/clang++  -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wconversion -DGTEST_HAS_PTHREAD=1 -fexceptions -W -Wpointer-arith -Wreturn-type -Wcast-qual -Wwrite-strings -Wswitch -Wunused-parameter -Wcast-align -Wchar-subscripts -Winline -Wredundant-decls -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest_main.cc",
+  "command": "/usr/bin/c++  -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/include -isystem /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest -Wall -Wshadow -Werror -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -Wall -Wextra -pedantic -Werror -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest_main.cc",
   "file": "/home/axr/prog/study/OS/main/build/_deps/googletest-src/googletest/src/gtest_main.cc"
 }
 ]
