@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab4/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include  -o CMakeFiles/lab4.dir/main.o -c /home/axr/prog/study/OS/main/lab4/main.c",
+  "file": "/home/axr/prog/study/OS/main/lab4/main.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab4/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include  -o CMakeFiles/lab4.dir/src/parent.o -c /home/axr/prog/study/OS/main/lab4/src/parent.c",
+  "file": "/home/axr/prog/study/OS/main/lab4/src/parent.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab4/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab4/include  -o CMakeFiles/lab4.dir/src/utils.o -c /home/axr/prog/study/OS/main/lab4/src/utils.c",
+  "file": "/home/axr/prog/study/OS/main/lab4/src/utils.c"
+}
+]
