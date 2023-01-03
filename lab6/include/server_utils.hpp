@@ -8,6 +8,6 @@
 
 using PStrVec = std::pair<std::string, std::vector<int>>;
 
-PStrVec UnpackCommand(std::string str);
+PStrVec UnpackCommand(std::string &str);
 
 #endif

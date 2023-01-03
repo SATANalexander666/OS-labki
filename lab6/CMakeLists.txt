@@ -13,6 +13,8 @@ add_executable(test main.cpp
 
 target_include_directories(test PRIVATE include)
 
+#find_package(cppzmq)
+
 target_include_directories(server PRIVATE include)
 target_link_libraries(server zmq)
 

@@ -3,11 +3,12 @@
 ./server &
 server_pid=$!
 
-./client < in1.txt &
+./client < in.txt &
 client_pid=$!
 
-echo ${server_pid}
-echo ${client_pid}
+sleep 1
 
-wait ${client_pid}
+kill ${client_pid}
 kill ${server_pid}
+
+return 0

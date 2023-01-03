@@ -1,4 +1,6 @@
+#include <cstdlib>
 #include <unistd.h>
+#include <zmq.h>
 #include <zmq.hpp>
 
 #include <string>
@@ -6,31 +8,25 @@
 
 int main (int argc, char const *argv[]) 
 {
-	void* context = zmq_ctx_new();
-	void* request = zmq_socket(context, ZMQ_REQ);
-	zmq_connect(request, "tcp://localhost:4040");
-	
-	int count = 0;
+    zmq::context_t context;
+    zmq::socket_t socket(context, ZMQ_REQ);
+  
+    const std::string address = "tcp://localhost:4040";
+    socket.connect(address);
+
     std::string str;
-	
-	while (getline(std::cin, str)) 
-	{
-		zmq_msg_t req;
-		zmq_msg_init_size(&req, str.length());
-		memcpy(zmq_msg_data(&req), str.data(), str.length());
+    zmq::message_t message(str.data(), str.length());
 
-		zmq_msg_send(&req, request, 0);
-		zmq_msg_close(&req);
+    auto res = socket.send(message, zmq::send_flags::none);
 
-		zmq_msg_t reply;
-		zmq_msg_init(&reply);
+    if (res.value())
+    {
+        std::cerr << "Sending message error\n";
+        exit(EXIT_FAILURE);
+    }
 
-		zmq_msg_recv(&reply, request, 0);
-		zmq_msg_close(&reply);
-	}
+    socket.close();
+    context.close();
 
-	zmq_close(request);
-	zmq_ctx_destroy(context);
-	
-	return 0;
+    return 0;
 }

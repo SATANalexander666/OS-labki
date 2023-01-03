@@ -5,7 +5,7 @@
 
 using PStrVec = std::pair<std::string, std::vector<int> >;
 
-int StrToInt(std::string str)
+int StrToInt(std::string &str)
 {
     int result = 0;
     int digit = 1;
@@ -19,7 +19,7 @@ int StrToInt(std::string str)
     return result;
 }
 
-PStrVec UnpackCommand(std::string str)
+PStrVec UnpackCommand(std::string &str)
 {
     PStrVec result;
 
