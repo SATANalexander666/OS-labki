@@ -1,0 +1,37 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/server.dir/src/server.o -c /home/axr/prog/study/OS/main/lab6/src/server.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/server.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/server.dir/src/server_utils.o -c /home/axr/prog/study/OS/main/lab6/src/server_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/server_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/client.dir/src/client.o -c /home/axr/prog/study/OS/main/lab6/src/client.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/client.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/client.dir/src/client_utils.o -c /home/axr/prog/study/OS/main/lab6/src/client_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/client_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/test.dir/main.o -c /home/axr/prog/study/OS/main/lab6/main.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/main.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/test.dir/src/server_utils.o -c /home/axr/prog/study/OS/main/lab6/src/server_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/server_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/test.dir/src/client_utils.o -c /home/axr/prog/study/OS/main/lab6/src/client_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/client_utils.cpp"
+}
+]
