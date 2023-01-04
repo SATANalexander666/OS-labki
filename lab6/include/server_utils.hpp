@@ -4,7 +4,12 @@
 #include <string>
 #include <sstream>
 #include <vector>
-#include <utility>
+
+#include <cstdlib>
+#include <iostream>
+#include <future>
+#include <string.h>
+#include <unistd.h>
 
 struct TArgs
 {
@@ -15,7 +20,7 @@ struct TArgs
 
 TArgs UnpackCommand(std::string &str);
 std::string CreateNode(std::string &id);
-void ExecCommand(std::string clientCommand, std::string &port);
+void ExecCommand(std::string clientCommand, std::promise<std::string> &&port);
 //std::string ExecCommand(std::string command);
 
 #endif

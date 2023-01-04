@@ -1,22 +1,13 @@
-#include "server_utils.hpp"
+//#include "server_utils.hpp"
 
 #include <iostream>
+#include <typeinfo>
+#include <future>
 
 int main()
 {
-    TArgs result;
-    std::string str;
+    std::promise<int> a;
+    auto b = a.get_future();
 
-    while (std::getline(std::cin, str)) 
-    {
-        result = UnpackCommand(str);
-    
-        std::cout << result.command << std::endl;
-        std::cout << result.id << std::endl;
-
-        for (int elem : result.args){
-            std::cout << elem << " ";
-        }
-    }
     return 0;
 }

@@ -22,7 +22,7 @@ int main (int argc, char const *argv[])
             try 
             {
                 zmq::message_t request(str.data(), str.length());
-                std::cout << "[Client] " << request.str() << std::endl; 
+                //std::cout << "[Client] " << request.str() << std::endl; 
 
                 auto requestStatus = socket.send(request, zmq::send_flags::none);
             }

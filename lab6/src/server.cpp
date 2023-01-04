@@ -20,7 +20,7 @@ int main (int argc, char const *argv[])
     clientSocket.bind(clientAddress);
 
     std::vector<std::thread> workers;
-    std::vector<std::promise <std::string> > workersProms;
+    std::vector<std::future <std::string> > workersProms;
 
     while (true)
     {
@@ -30,24 +30,30 @@ int main (int argc, char const *argv[])
         
         if (!clientCommand.compare("END_OF_INPUT"))
         {
-            std::for_each(workers.begin(), workers.end(), [](std::thread &worker){
+            /*std::for_each(workers.begin(), workers.end(), [](std::thread &worker){
                 worker.join();
             });
 
-            for (std::string &elem : threadsRes){
-                std::cout << elem << std::endl;
+            for (int i = 0; i < (int)workersProms.size(); ++i){
+                std::cout << workersProms[i].get() << std::endl;
+            }*/
+
+            for (int i = 0; i < (int)std::min(workers.size(), workersProms.size()); ++i){
+                workers[i].join();
+                std::cout << workersProms[i].get() << std::endl;
             }
 
             break;
         }
 
         std::promise<std::string> workerProm;
-        std::thread worker = std::thread(&ExecCommand, clientCommand, std::ref(port));
+        std::future<std::string> futureValue = workerProm.get_future();
+        std::thread worker(&ExecCommand, clientCommand, std::move(workerProm));
         
         workers.push_back(std::move(worker));
-        threadsRes.push_back(port);
+        workersProms.push_back(std::move(futureValue));
 
-        std::cout << "[Server] " << clientCommand << std::endl;
+        //std::cout << "[Server] " << clientCommand << std::endl;
     }
 
     clientSocket.close();

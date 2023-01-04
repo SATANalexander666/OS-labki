@@ -1,13 +1,5 @@
 #include "server_utils.hpp"
 
-#include <cstdlib>
-#include <string.h>
-#include <iostream>
-#include <sstream>
-#include <string>
-#include <future>
-#include <unistd.h>
-
 TArgs UnpackCommand(std::string &str)
 {
     TArgs result;
@@ -85,29 +77,6 @@ void ExecCommand(std::string clientCommand, std::promise<std::string> &&port)
         port.set_value("exec");
     }
 
-    std::cout << "Worker" << std::endl;
+    std::cout << "[Worker]" << std::endl;
 }
-
-/*std::string ExecCommand(std::string command)
-{
-    std::string port;
-
-    TArgs args = UnpackCommand(command); 
-    
-    if (!(args.command).compare("create")){
-        port = CreateNode(args.id);
-    }
-    else if (!(args.command).compare("remove"))
-    {
-        port = "remove";
-    }
-    else if (!(args.command).compare("exec"))
-    {
-        port = "exec";
-    }
-
-    std::cout << "Worker" << std::endl;
-
-    return port;
-}*/
 
