@@ -4,44 +4,62 @@
 #include <stdexcept>
 #include <zmq.hpp>
 
+struct Node::PrivateMethods
+{
+    static void SendMessage(Node &self, std::string &messageStr)
+    {
+        try
+        {
+            zmq::message_t request(messageStr.data(), messageStr.length());
+            zmq::send_result_t requestStatus = self.socket.send(request, zmq::send_flags::none);
+        }
+        catch(std::exception &exc){
+            std::cerr << "Error while sending message from address: " << self.address \
+                << std::endl << exc.what() << std::endl;
+        }
+    }
+
+    static std::string RecieveMessage(Node &self)
+    {
+        zmq::message_t response;
+        
+        try {   
+            zmq::recv_result_t responseStatus = self.socket.recv(response, zmq::recv_flags::none);
+        }
+        catch (std::exception &exc){
+            std::cerr << "error" << std::endl;
+        }
+        
+        return response.to_string();
+    }
+   
+};
+
 Node::Node(std::string &port)
 {
     try 
     {
-        this->socket = (zmq::socket_t(context, zmq::socket_type::pair));
+        this->socket = (zmq::socket_t(context, zmq::socket_type::req));
         
         this->address = "tcp://localhost:" + port;
         this->socket.connect(this->address);
     }
-    catch (std::exception exc){
-        std::cerr << "Error while connecting from address: " << this->address << std::endl;
+    catch (std::exception &exc){
+        std::cerr << "Error while connecting from address: " << this->address \
+            << std::endl << exc.what() << std::endl;
     }
 }
 
-void Node::SendMessage(std::string &message)
+std::string Node::SendRequest(std::string &messageStr)
 {
-    try
-    {
-        zmq::message_t request(message.data(), message.length());
-        zmq::send_result_t requestStatus = this->socket.send(request, zmq::send_flags::none);
-    }
-    catch(std::exception exc){
-        std::cerr << "Error while sending message from address: " << this->address << std::endl;
-    }
-}
-
-std::string Node::RecieveMessage(void)
-{
-    zmq::message_t response;
-    zmq::recv_result_t responseStatus = this->socket.recv(response, zmq::recv_flags::none);
-
-    return response.to_string();
+    PrivateMethods::SendMessage(*this, messageStr);
+    return PrivateMethods::RecieveMessage(*this);
 }
 
 Node::~Node()
 {
     std::string terminate = "END_OF_INPUT";
-    SendMessage(terminate);
+    //SendMessage(terminate);
 
     socket.disconnect(address);
     socket.close();

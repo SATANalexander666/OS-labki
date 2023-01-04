@@ -12,13 +12,15 @@ int main (int argc, char const *argv[])
     Node node(port);
 
     std::string message = "remove 0";
-    node.SendMessage(message);
+    std::string response = node.SendRequest(message);
+    
+    std::cout << response << std::endl;
+    
+    message = "END_OF_INPUT";
+    response = node.SendRequest(message);
 
-    std::string terminate = "END_OF_INPUT";
-    node.SendMessage(terminate);
-
-    std::string reply = node.RecieveMessage();
-
+    std::cout << response << std::endl;
+    
     /*zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::pair);
   

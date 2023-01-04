@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd executables
+exec_dir="/home/axr/prog/study/OS/main/lab6/executables"
+cd ${exec_dir}
 
 ./server &
 server_pid=$!

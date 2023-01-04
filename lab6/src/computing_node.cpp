@@ -12,7 +12,33 @@ int main(int argc, char* argv[])
     }
 
     std::string port = argv[1];
-    std::string adress = "tcp://*:" + port;
+    std::string address = "tcp://*:" + port;
+
+    std::cout << address << std::endl;
+
+    zmq::context_t context;
+    zmq::socket_t socket(context, zmq::socket_type::rep);
+    socket.bind(address);
+
+    while (true)
+    {
+        zmq::message_t request;
+        zmq::recv_result_t requestStatus = socket.recv(request, zmq::recv_flags::none);
+        std::string requestStr = request.to_string();
+
+        std::cout << requestStr << std::endl;
+
+        std::string responseStr = port + " " + requestStr;
+        zmq::message_t response(responseStr.data(), responseStr.length());
+        zmq::send_result_t responseStatus = socket.send(response, zmq::send_flags::none);
+         
+        if (!requestStr.compare("END_OF_INPUT")){
+            break;
+        }
+   }
+
+    socket.close();
+    context.close();
 
     return 0;
 }

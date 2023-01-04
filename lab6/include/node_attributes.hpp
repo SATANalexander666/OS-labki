@@ -12,10 +12,11 @@ class Node
         zmq::context_t context;
         zmq::socket_t socket;
 
+        struct PrivateMethods;
+
     public:
         Node(std::string &port);
-        void SendMessage(std::string &message);
-        std::string RecieveMessage(void);
+        std::string SendRequest(std::string &messageStr);
         ~Node();
     };
 
