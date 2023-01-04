@@ -4,19 +4,19 @@
 
 int main()
 {
-    PStrVec result;
+    TArgs result;
     std::string str;
 
     while (std::getline(std::cin, str)) 
     {
         result = UnpackCommand(str);
     
-        std::cout << result.first << std::endl;
+        std::cout << result.command << std::endl;
+        std::cout << result.id << std::endl;
 
-        for (int elem : result.second){
+        for (int elem : result.args){
             std::cout << elem << " ";
         }
-        std::cout << std::endl;
     }
     return 0;
 }

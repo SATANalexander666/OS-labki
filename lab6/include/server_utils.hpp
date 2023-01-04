@@ -6,8 +6,16 @@
 #include <vector>
 #include <utility>
 
-using PStrVec = std::pair<std::string, std::vector<int>>;
+struct TArgs
+{
+    std::string command;
+    std::string id;
+    std::vector<int> args;
+};
 
-PStrVec UnpackCommand(std::string &str);
+TArgs UnpackCommand(std::string &str);
+std::string CreateNode(std::string &id);
+void ExecCommand(std::string clientCommand, std::string &port);
+//std::string ExecCommand(std::string command);
 
 #endif
