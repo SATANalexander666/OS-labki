@@ -30,17 +30,9 @@ int main (int argc, char const *argv[])
         
         if (!clientCommand.compare("END_OF_INPUT"))
         {
-            /*std::for_each(workers.begin(), workers.end(), [](std::thread &worker){
-                worker.join();
-            });
-
-            for (int i = 0; i < (int)workersProms.size(); ++i){
-                std::cout << workersProms[i].get() << std::endl;
-            }*/
-
             for (int i = 0; i < (int)std::min(workers.size(), workersProms.size()); ++i){
                 workers[i].join();
-                std::cout << workersProms[i].get() << std::endl;
+                //std::cout << workersProms[i].get() << std::endl;
             }
 
             break;
@@ -52,8 +44,6 @@ int main (int argc, char const *argv[])
         
         workers.push_back(std::move(worker));
         workersProms.push_back(std::move(futureValue));
-
-        //std::cout << "[Server] " << clientCommand << std::endl;
     }
 
     clientSocket.close();

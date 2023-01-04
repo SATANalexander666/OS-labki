@@ -1,5 +1,6 @@
-#include <exception>
 #include <zmq.hpp>
+
+#include <node_attributes.hpp>
 
 #include <string>
 #include <iostream>
@@ -7,7 +8,18 @@
 
 int main (int argc, char const *argv[]) 
 {
-    zmq::context_t context;
+    std::string port = "4040";
+    Node node(port);
+
+    std::string message = "remove 0";
+    node.SendMessage(message);
+
+    std::string terminate = "END_OF_INPUT";
+    node.SendMessage(terminate);
+
+    std::string reply = node.RecieveMessage();
+
+    /*zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::pair);
   
     const std::string address = "tcp://localhost:4040";
@@ -39,7 +51,7 @@ int main (int argc, char const *argv[])
 
     socket.disconnect(address);
     socket.close();
-    context.close();
+    context.close();*/
 
     return 0;
 }

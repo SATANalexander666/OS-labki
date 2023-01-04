@@ -14,7 +14,5 @@ int main(int argc, char* argv[])
     std::string port = argv[1];
     std::string adress = "tcp://*:" + port;
 
-    
-
     return 0;
 }

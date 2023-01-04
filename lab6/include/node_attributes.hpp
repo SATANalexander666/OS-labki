@@ -14,6 +14,8 @@ class Node
 
     public:
         Node(std::string &port);
+        void SendMessage(std::string &message);
+        std::string RecieveMessage(void);
         ~Node();
     };
 

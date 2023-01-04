@@ -31,8 +31,13 @@
 },
 {
   "directory": "/home/axr/prog/study/OS/main/lab6/build",
-  "command": "/usr/bin/c++    -o CMakeFiles/client.dir/src/client.o -c /home/axr/prog/study/OS/main/lab6/src/client.cpp",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/client.dir/src/client.o -c /home/axr/prog/study/OS/main/lab6/src/client.cpp",
   "file": "/home/axr/prog/study/OS/main/lab6/src/client.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -o CMakeFiles/client.dir/src/node_attributes.o -c /home/axr/prog/study/OS/main/lab6/src/node_attributes.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/node_attributes.cpp"
 },
 {
   "directory": "/home/axr/prog/study/OS/main/lab6/build",
