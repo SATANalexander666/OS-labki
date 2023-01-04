@@ -10,6 +10,8 @@
 #include <future>
 #include <string.h>
 #include <unistd.h>
+#include <zmq.hpp>
+#include <map>
 
 struct TArgs
 {
@@ -21,6 +23,5 @@ struct TArgs
 TArgs UnpackCommand(std::string &str);
 std::string CreateNode(std::string &id);
 void ExecCommand(std::string clientCommand, std::promise<std::string> &&port);
-//std::string ExecCommand(std::string command);
 
 #endif

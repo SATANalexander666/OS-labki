@@ -1,13 +1,11 @@
-//#include "server_utils.hpp"
+#include "node_attributes.hpp"
 
-#include <iostream>
-#include <typeinfo>
-#include <future>
+#include <string>
 
 int main()
 {
-    std::promise<int> a;
-    auto b = a.get_future();
+    std::string s = "loool";
+    Node a(s);
 
     return 0;
 }
