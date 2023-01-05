@@ -9,9 +9,9 @@
 int main (int argc, char const *argv[]) 
 {
     /*std::string port = "4040";
-    Node node(port);
+    WrappedNode node(port);
 
-    std::string message = "remove 0";
+    std::string message = "PID";
     std::string response = node.SendRequest(message);
  
     std::cout << "[client recieved] " << response << std::endl;
@@ -21,7 +21,7 @@ int main (int argc, char const *argv[])
 
     std::cout << "[client recieved] " << response << std::endl;
     */
-    
+
     zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::pair);
   

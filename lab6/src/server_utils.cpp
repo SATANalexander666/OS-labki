@@ -7,7 +7,7 @@
 #include <mutex>
 #include <signal.h>
 
-static std::map<std::string, Node*> nodeMap;
+static std::map<std::string, WrappedNode> nodeMap;
 
 std::mutex nodeLocker;
 
@@ -83,14 +83,14 @@ TCmdReturn CreateNode(std::string &id)
         result.comment = "Ok: " + std::to_string(pid);
 
         nodeLocker.try_lock();
-        nodeMap.insert(std::make_pair(id, new Node(port)));
+        nodeMap.insert(std::make_pair(id, WrappedNode(port)));
         nodeLocker.unlock();
     }
     catch(std::exception &exc)
     {
         result.comment = "Error" + (std::string)exc.what();
 
-        std::cerr << "Error while creating computing node with id - " \
+        std::cout << "Error while creating computing node with id - " \
             << id << std::endl << exc.what() << std::endl; 
     }
 
@@ -100,7 +100,7 @@ TCmdReturn CreateNode(std::string &id)
 TCmdReturn RemoveNode(std::string id)
 {
     TCmdReturn result;
-    std::map<std::string, Node*>::iterator it = nodeMap.find(id);
+    std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
 
     if (it == nodeMap.end())
     {
@@ -110,10 +110,10 @@ TCmdReturn RemoveNode(std::string id)
 
     try
     {  
-        Node* node = it->second;
+        WrappedNode node = it->second;
 
         std::string request = "PID";
-        std::string response = node->SendRequest(request);
+        std::string response = node.SendRequest(request);
 
         kill(std::stoi(response), SIGKILL);
     }

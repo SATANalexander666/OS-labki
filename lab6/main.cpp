@@ -1,14 +1,10 @@
 #include <iostream>
-#include "node_attributes.hpp"
-#include <map>
 #include <string>
+#include "node_attributes.hpp"
 
 int main()
 {
-    std::map<std::string, Node> mp;
-    std::string id = "1";
-
-    map[id] = new Node();
+    std::string port = "1024";
 
     return 0;
 }

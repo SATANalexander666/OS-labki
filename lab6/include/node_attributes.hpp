@@ -24,4 +24,15 @@ class Node
         ~Node();
 };
 
+class WrappedNode
+{
+    private:
+        Node *node;
+    public:
+        WrappedNode(std::string port);
+        std::string SendRequest(std::string &messageStr);
+        ~WrappedNode();
+}
+;
 #endif
+

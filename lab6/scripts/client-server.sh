@@ -23,8 +23,8 @@ do
     fi
 
     if [[ ${status} == 1 ]]; then
+        echo "Waiting..."
         sleep 1
-        echo 1
     else
         break
     fi
@@ -40,4 +40,6 @@ if [ -n "$(ps -p ${server_pid} -o pid=)" ]; then
     kill ${server_pid}
     echo "Server terminated."
 fi
+
+#fuser -k 1147/tcp
 
