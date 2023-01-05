@@ -1,16 +1,12 @@
 #include "server_utils.hpp"
-#include <algorithm>
-#include <functional>
 #include <zmq.hpp>
 
 #include <string>
 #include <iostream>
-#include <map>
 #include <vector>
 #include <queue>
 #include <thread>
 #include <future>
-#include <unistd.h>
 
 int main (int argc, char const *argv[]) 
 {
@@ -21,7 +17,8 @@ int main (int argc, char const *argv[])
     clientSocket.bind(clientAddress);
 
     std::vector<std::thread> workers;
-    std::vector<std::future <std::string> > workersProms;
+    std::vector<std::future <TCmdReturn> > workersProms;
+    std::queue<TCmdReturn> responseQueue;
 
     while (true)
     {
@@ -33,18 +30,23 @@ int main (int argc, char const *argv[])
         {
             for (int i = 0; i < (int)std::min(workers.size(), workersProms.size()); ++i){
                 workers[i].join();
-                //std::cout << workersProms[i].get() << std::endl;
+                responseQueue.push(workersProms[i].get());
             }
 
             break;
         }
 
-        std::promise<std::string> workerProm;
-        std::future<std::string> futureValue = workerProm.get_future();
+        std::promise<TCmdReturn> workerProm;
+        std::future<TCmdReturn> futureValue = workerProm.get_future();
         std::thread worker(&ExecCommand, clientCommand, std::move(workerProm));
         
         workers.push_back(std::move(worker));
         workersProms.push_back(std::move(futureValue));
+    }
+
+    while (!responseQueue.empty()){
+        std::cout << "[queue] " << responseQueue.front().command << std::endl;
+        responseQueue.pop();
     }
 
     clientSocket.close();

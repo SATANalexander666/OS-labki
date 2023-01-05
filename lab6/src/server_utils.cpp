@@ -1,8 +1,21 @@
 #include "server_utils.hpp"
+#include "node_attributes.hpp"
+#include <exception>
+#include <ostream>
+#include <string>
+#include <utility>
+#include <mutex>
+#include <signal.h>
 
-TArgs UnpackCommand(std::string &str)
+static std::map<std::string, Node*> nodeMap;
+
+std::mutex nodeLocker;
+
+const int MIN_PORT = 1024;
+
+TCmdArgs UnpackCommand(std::string &str)
 {
-    TArgs result;
+    TCmdArgs result;
 
     std::stringstream strStream;
     strStream << str;
@@ -36,47 +49,119 @@ TArgs UnpackCommand(std::string &str)
     return result;
 }
 
-std::string CreateNode(std::string &id)
+TCmdReturn CreateNode(std::string &id)
 {
-    const int MIN_PORT = 1024;
-    std::string port = std::to_string(MIN_PORT + std::stoi(id));
+    TCmdReturn result;
 
-    char* argv[3];
-
-    argv[0] = (char*)malloc(5);
-    strcpy(argv[0], "computing_node");
-    argv[1] = (char*)malloc(port.length() + 1);
-    strcpy(argv[1], port.data());
-    argv[2] = NULL;
-
-    int pid = fork();
-
-    if (!pid){
-        execv(argv[0], argv);
+    if (nodeMap.count(id))
+    {
+        result.comment = "Error: Already exists";
+        return result;
     }
 
-    free(argv[0]);
-    free(argv[1]);
+    try
+    {
+        std::string port = std::to_string(MIN_PORT + std::stoi(id));
 
-    return port;
+        char* argv[3];
+        argv[0] = (char*)malloc(5);
+        strcpy(argv[0], "computing_node");
+        argv[1] = (char*)malloc(port.length() + 1);
+        strcpy(argv[1], port.data());
+        argv[2] = NULL;
+
+        int pid = fork();
+
+        if (!pid){
+            execv(argv[0], argv);
+        }
+
+        free(argv[0]);
+        free(argv[1]);
+    
+        result.pid = pid;
+        result.comment = "Ok: " + std::to_string(pid);
+
+        nodeLocker.try_lock();
+        nodeMap.insert(std::make_pair(id, new Node(port)));
+        nodeLocker.unlock();
+    }
+    catch(std::exception &exc)
+    {
+        result.comment = "Error" + (std::string)exc.what();
+
+        std::cerr << "Error while creating computing node with id - " \
+            << id << std::endl << exc.what() << std::endl; 
+    }
+
+    return result;
 }
 
-void ExecCommand(std::string clientCommand, std::promise<std::string> &&port)
+TCmdReturn RemoveNode(std::string id)
 {
-    TArgs args = UnpackCommand(clientCommand); 
-    
-    if (!(args.command).compare("create")){
-        port.set_value(CreateNode(args.id));
+    TCmdReturn result;
+    std::map<std::string, Node*>::iterator it = nodeMap.find(id);
+
+    if (it == nodeMap.end())
+    {
+        result.comment = "Error: Not found";
+        return result;
+    }
+
+    try
+    {  
+        Node* node = it->second;
+
+        std::string request = "PID";
+        std::string response = node->SendRequest(request);
+
+        kill(std::stoi(response), SIGKILL);
+    }
+    catch(std::exception &exc)
+    {
+        std::cerr << "Error while killing process with id - " \
+            << id << std::endl << exc.what() << std::endl;
+
+        result.comment = "Error: uncallable pid";
+    }
+
+    try
+    {
+        nodeLocker.try_lock();
+        nodeMap.erase(it); 
+        nodeLocker.unlock();
+    }
+    catch(std::exception &exc)
+    {
+        std::cerr << "Error while removing node with id - " \
+            << id << " from map\n" << exc.what() << std::endl;
+
+        result.comment = "Error: I broke map ;(";
+    }
+
+    return result;
+}
+
+void ExecCommand(std::string clientCommand, std::promise<TCmdReturn> &&port)
+{
+    TCmdArgs args = UnpackCommand(clientCommand); 
+    TCmdReturn result;
+
+    if (!(args.command).compare("create"))
+    {
+        result = CreateNode(args.id);    
+        result.command = "create";
     }
     else if (!(args.command).compare("remove"))
     {
-        port.set_value("remove");
+        result = RemoveNode(args.id);
+        result.command = "remove";
     }
     else if (!(args.command).compare("exec"))
     {
-        port.set_value("exec");
+        result.command = "exec";
     }
 
-    std::cout << "[Worker]" << std::endl;
+    port.set_value(result);
 }
 

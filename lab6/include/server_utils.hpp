@@ -13,15 +13,25 @@
 #include <zmq.hpp>
 #include <map>
 
-struct TArgs
+struct TCmdArgs
 {
     std::string command;
     std::string id;
     std::vector<int> args;
 };
 
-TArgs UnpackCommand(std::string &str);
-std::string CreateNode(std::string &id);
-void ExecCommand(std::string clientCommand, std::promise<std::string> &&port);
+struct TCmdReturn
+{
+    std::string command{""};
+    std::string comment{""};
+    std::string port{""};
+
+    int pid{-1};
+    int result{-1};
+};
+
+TCmdArgs UnpackCommand(std::string &str);
+TCmdReturn CreateNode(std::string &id);
+void ExecCommand(std::string clientCommand, std::promise<TCmdReturn> &&port);
 
 #endif

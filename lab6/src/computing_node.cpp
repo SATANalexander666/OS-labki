@@ -14,6 +14,8 @@ int main(int argc, char* argv[])
     std::string port = argv[1];
     std::string address = "tcp://*:" + port;
 
+    std::cout << "[node] " << address << std::endl;
+
     zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::rep);
     socket.bind(address);
@@ -33,7 +35,7 @@ int main(int argc, char* argv[])
         if (!requestStr.compare("END_OF_INPUT")){
             break;
         }
-   }
+    }
 
     socket.close();
     context.close();

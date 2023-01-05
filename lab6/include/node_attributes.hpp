@@ -22,6 +22,6 @@ class Node
         Node(std::string &port);
         std::string SendRequest(std::string &messageStr);
         ~Node();
-    };
+};
 
 #endif
