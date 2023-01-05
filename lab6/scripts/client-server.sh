@@ -41,5 +41,5 @@ if [ -n "$(ps -p ${server_pid} -o pid=)" ]; then
     echo "Server terminated."
 fi
 
-#fuser -k 1147/tcp
+fuser -k 1147/tcp
 

@@ -10,6 +10,7 @@
 #include <future>
 #include <string.h>
 #include <unistd.h>
+#include <signal.h>
 #include <zmq.hpp>
 #include <map>
 

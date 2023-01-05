@@ -57,15 +57,13 @@ std::string Node::SendRequest(std::string &messageStr)
 
 Node::~Node()
 {
-    std::cout << this->address << std::endl;
-
     socket.disconnect(address);
     socket.close();
     context.close();
 }
 
 WrappedNode::WrappedNode(std::string port){
-    this->node = new Node(port);
+    Node *node = new Node(port);
 }
 
 std::string WrappedNode::SendRequest(std::string &messageStr){

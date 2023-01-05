@@ -1,15 +1,7 @@
 #include "server_utils.hpp"
 #include "node_attributes.hpp"
-#include <exception>
-#include <ostream>
-#include <string>
-#include <utility>
-#include <mutex>
-#include <signal.h>
 
-static std::map<std::string, WrappedNode> nodeMap;
-
-std::mutex nodeLocker;
+std::map<std::string, WrappedNode> nodeMap;
 
 const int MIN_PORT = 1024;
 
@@ -82,9 +74,7 @@ TCmdReturn CreateNode(std::string &id)
         result.pid = pid;
         result.comment = "Ok: " + std::to_string(pid);
 
-        nodeLocker.try_lock();
         nodeMap.insert(std::make_pair(id, WrappedNode(port)));
-        nodeLocker.unlock();
     }
     catch(std::exception &exc)
     {
@@ -101,20 +91,20 @@ TCmdReturn RemoveNode(std::string id)
 {
     TCmdReturn result;
     std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
-
+    
     if (it == nodeMap.end())
     {
         result.comment = "Error: Not found";
         return result;
     }
 
+    std::cout << "[worker]\n";
     try
     {  
-        WrappedNode node = it->second;
-
         std::string request = "PID";
-        std::string response = node.SendRequest(request);
+        std::string response = it->second.SendRequest(request);
 
+        std::cout << response << std::endl;
         kill(std::stoi(response), SIGKILL);
     }
     catch(std::exception &exc)
@@ -127,9 +117,7 @@ TCmdReturn RemoveNode(std::string id)
 
     try
     {
-        nodeLocker.try_lock();
         nodeMap.erase(it); 
-        nodeLocker.unlock();
     }
     catch(std::exception &exc)
     {
