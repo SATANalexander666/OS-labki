@@ -1,9 +1,11 @@
 #include "server_utils.hpp"
 #include "node_attributes.hpp"
 #include <exception>
+#include <mutex>
 #include <string>
 
-std::map<std::string, WrappedNode> nodeMap;
+std::map<std::string, Node*> nodeMap;
+std::mutex locker;
 
 const int MIN_PORT = 1024;
 
@@ -43,13 +45,13 @@ TCmdArgs UnpackCommand(std::string &str)
     return result;
 }
 
-TCmdCrtReturn CreateNode(std::string &id)
+std::string CreateNode(std::string &id)
 {
-    TCmdCrtReturn result;
+    std::string result;
 
     if (nodeMap.count(id))
     {
-        result.comment = "Error: Already exists";
+        result = "Error: Already exists";
         return result;
     }
 
@@ -73,15 +75,15 @@ TCmdCrtReturn CreateNode(std::string &id)
         free(argv[0]);
         free(argv[1]);
     
-        result.comment = "Ok: " + std::to_string(pid);
+        result = "Created: pid - " + std::to_string(pid) + ", id - " + id;
 
-        nodeMap.insert(std::make_pair(id, WrappedNode(port)));
+        nodeMap.insert(std::make_pair(id, new Node(port)));
     }
     catch(std::exception &exc)
     {
-        result.comment = "Error" + (std::string)exc.what();
+        result = "Error" + (std::string)exc.what();
 
-        std::cout << "Error while creating computing node with id - " \
+        std::cerr << "Error while creating computing node with id - " \
             << id << std::endl << exc.what() << std::endl; 
     }
 
@@ -91,7 +93,9 @@ TCmdCrtReturn CreateNode(std::string &id)
 std::string RemoveNode(std::string &id)
 {
     std::string result;
-    std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
+    std::string response;
+
+    std::map<std::string, Node*>::iterator it = nodeMap.find(id);
     
     if (it == nodeMap.end())
     {
@@ -102,10 +106,11 @@ std::string RemoveNode(std::string &id)
     try
     {  
         std::string request = "PID";
-        std::string response = it->second.SendRequest(request);
+        std::string response = it->second->SendRequest(request);
 
-        std::cout << "[worker]\n";
-        std::cout << response << std::endl;
+        request = "END_OF_INPUT";
+        it->second->SendRequest(request);
+
         kill(std::stoi(response), SIGKILL);
     }
     catch(std::exception &exc)
@@ -116,8 +121,12 @@ std::string RemoveNode(std::string &id)
         result = "Error: uncallable pid";
     }
 
-    try{
-        nodeMap.erase(it); 
+    try
+    {
+        delete it->second;
+        nodeMap.erase(it);
+
+        result = "Removed: pid - " + response + ", id - " + id;
     }
     catch(std::exception &exc)
     {
@@ -130,16 +139,16 @@ std::string RemoveNode(std::string &id)
     return result;
 }
 
-void ExecNode(std::string &id, std::vector<int> &args, std::promise<TCmdExecReturn> &&result)
+void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &&result)
 {
-    TCmdExecReturn localResult;
+    std::string resultStr;
 
-    std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
+    std::map<std::string, Node*>::iterator it = nodeMap.find(id);
 
     if (it == nodeMap.end())
     {
-        localResult.comment = "Error: " + id + ": Not found";
-        result.set_value(localResult);
+        resultStr = "Error: " + id + ": Not found";
+        result.set_value(resultStr);
 
         return;
     }
@@ -151,19 +160,20 @@ void ExecNode(std::string &id, std::vector<int> &args, std::promise<TCmdExecRetu
         for (int &elem : args){
             request += std::to_string(elem) + " ";
         }
+        
+        std::string response = it->second->SendRequest(request);
 
-        std::cout << request << std::endl;
+        resultStr = "Executed: id - " + id + ", sum - " + response;
     }
     catch(std::exception &exc)
     {
         std::cerr << "Error while accesing node with id - " \
             << id << std::endl << exc.what() << std::endl;
 
-        localResult.comment = "Error: " + id + ": Node is unavaliable";
-        result.set_value(localResult);
-
-        return;
+        resultStr = "Error: " + id + ": Node is unavaliable";
+        result.set_value(resultStr);
     }
 
+    result.set_value(resultStr);
 }
 

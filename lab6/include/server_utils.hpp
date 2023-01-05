@@ -21,22 +21,9 @@ struct TCmdArgs
     std::vector<int> args;
 };
 
-struct TCmdCrtReturn
-{
-    std::string comment{""};
-    std::string port{""};
-};
-
-struct TCmdExecReturn
-{
-    std::string comment{""};
-
-    int result{-1};
-};
-
 TCmdArgs UnpackCommand(std::string &str);
-TCmdCrtReturn CreateNode(std::string &id);
+std::string CreateNode(std::string &id);
 std::string RemoveNode(std::string &id);
-void ExecNode(std::string &id, std::vector<int> &args, std::promise<TCmdExecReturn> &&result);
+void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &&result);
 
 #endif

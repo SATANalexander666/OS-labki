@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <sstream>
 #include <string>
 #include <unistd.h>
 #include <zmq.hpp>
@@ -18,7 +19,7 @@ int main(int argc, char* argv[])
     //std::cout << "[node] " << address << std::endl;
 
     zmq::context_t context;
-    zmq::socket_t socket(context, zmq::socket_type::rep);
+    zmq::socket_t socket(context, zmq::socket_type::pair);
     socket.bind(address);
 
     while (true)
@@ -27,15 +28,23 @@ int main(int argc, char* argv[])
         zmq::recv_result_t requestStatus = socket.recv(request, zmq::recv_flags::none);
         std::string requestStr = request.to_string();
 
-        std::cout << "[node recieved] " << requestStr << std::endl;
-
         std::string responseStr;
 
         if (!requestStr.compare("PID")){
             responseStr = std::to_string(getpid());
         }
-        else{
-            responseStr = requestStr;
+        else if (requestStr.compare("END_OF_INPUT"))
+        {
+            std::stringstream strStream;
+            strStream << requestStr;
+            std::string str;
+            int num = 0;
+
+            while (std::getline(strStream, str, ' ')){
+                num += std::stoi(str);
+            }
+
+            responseStr = std::to_string(num);
         }
             
         zmq::message_t response(responseStr.data(), responseStr.length());

@@ -13,9 +13,9 @@ int main (int argc, char const *argv[])
     std::string address = "tcp://*:4040";
     socket.bind(address);
 
-    std::vector<std::thread> workers;
-    std::vector<std::future <TCmdExecReturn> > workersProms;
-    std::queue<TCmdExecReturn> responseQueue;
+    std::queue<std::thread> workers;
+    std::queue<std::future <std::string> > workersProms;
+    std::queue<std::string> responseQueue;
 
     while (true)
     {
@@ -23,11 +23,17 @@ int main (int argc, char const *argv[])
         auto requestStatus = socket.recv(request, zmq::recv_flags::none);
         std::string requestStr = request.to_string();
         
+        std::string activeThreadId;
+        
         if (!requestStr.compare("END_OF_INPUT"))
         {
-            for (int i = 0; i < (int)std::min(workers.size(), workersProms.size()); ++i){
-                workers[i].join();
-                responseQueue.push(workersProms[i].get());
+            while (!workers.empty())
+            {
+                workers.front().join();
+                workers.pop();
+
+                responseQueue.push(workersProms.front().get());
+                workersProms.pop();
             }
 
             break;
@@ -37,29 +43,44 @@ int main (int argc, char const *argv[])
 
         if (!arguments.command.compare("exec"))
         {
-            std::promise<TCmdExecReturn> workerProm;
-            std::future<TCmdExecReturn> futureValue = workerProm.get_future();
-            std::thread worker(&ExecNode, std::ref(arguments.id), std::ref(arguments.args), std::move(workerProm));
+            std::promise<std::string> workerProm;
+            std::future<std::string> futureValue = workerProm.get_future();
+            std::thread worker(&ExecNode, arguments.id, arguments.args, std::move(workerProm));
             
-            workers.push_back(std::move(worker));
-            workersProms.push_back(std::move(futureValue)); 
+            workers.push(std::move(worker));
+            workersProms.push(std::move(futureValue)); 
         }
 
         if (!arguments.command.compare("create")){
-            TCmdCrtReturn nodeInfo = CreateNode(arguments.id);
-            std::cout << nodeInfo.comment << std::endl;
+            responseQueue.push(CreateNode(arguments.id));
         }
 
-        if (!arguments.command.compare("remove")){
-            std::string result = RemoveNode(arguments.id);
-            std::cout << result << std::endl;
+        if (!arguments.command.compare("remove"))
+        {
+            while (!workers.empty())
+            {
+                workers.front().join();
+                workers.pop();
+
+                responseQueue.push(workersProms.front().get());
+                workersProms.pop();
+            }
+
+            responseQueue.push(RemoveNode(arguments.id));
         }
     }
 
-    while (!responseQueue.empty()){
-        std::cout << "[queue] " << responseQueue.front().comment << std::endl;
+    while (!responseQueue.empty())
+    {
+        zmq::message_t response(responseQueue.front().data(), responseQueue.front().length());
+        zmq::send_result_t responseStatus = socket.send(response, zmq::send_flags::none);
+
         responseQueue.pop();
     }
+
+    std::string terminate = "END_OF_INPUT";
+    zmq::message_t response(terminate.data(), terminate.length());
+    zmq::send_result_t responseStatus = socket.send(response, zmq::send_flags::none);
 
     socket.close();
     context.close();

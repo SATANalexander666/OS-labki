@@ -35,7 +35,7 @@ Node::Node(std::string &port)
 {
     try 
     {
-        this->socket = (zmq::socket_t(context, zmq::socket_type::req));
+        this->socket = (zmq::socket_t(context, zmq::socket_type::pair));
         address = "tcp://localhost:" + port;
         this->socket.connect(address);
     }
