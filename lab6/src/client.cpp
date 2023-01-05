@@ -8,20 +8,21 @@
 
 int main (int argc, char const *argv[]) 
 {
-    std::string port = "4040";
+    /*std::string port = "4040";
     Node node(port);
 
     std::string message = "remove 0";
     std::string response = node.SendRequest(message);
-    
-    std::cout << response << std::endl;
+ 
+    std::cout << "[client recieved] " << response << std::endl;
     
     message = "END_OF_INPUT";
     response = node.SendRequest(message);
 
-    std::cout << response << std::endl;
+    std::cout << "[client recieved] " << response << std::endl;
+    */
     
-    /*zmq::context_t context;
+    zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::pair);
   
     const std::string address = "tcp://localhost:4040";
@@ -40,7 +41,7 @@ int main (int argc, char const *argv[])
 
                 auto requestStatus = socket.send(request, zmq::send_flags::none);
             }
-            catch (std::exception exc){
+            catch (std::exception &exc){
                 std::cerr << exc.what() << std::endl;
             }
         }
@@ -53,7 +54,7 @@ int main (int argc, char const *argv[])
 
     socket.disconnect(address);
     socket.close();
-    context.close();*/
+    context.close();
 
     return 0;
 }

@@ -3,11 +3,15 @@
 
 #include <zmq.hpp>
 #include <iostream>
+#include <exception>
+#include <stdexcept>
+#include <mutex>
 
 class Node
 {
     private:
         std::string address;
+        std::mutex locker;
 
         zmq::context_t context;
         zmq::socket_t socket;

@@ -7,6 +7,7 @@
 #include <iostream>
 #include <map>
 #include <vector>
+#include <queue>
 #include <thread>
 #include <future>
 #include <unistd.h>

@@ -1,8 +1,4 @@
-#include <exception>
-#include <node_attributes.hpp>
-
-#include <stdexcept>
-#include <zmq.hpp>
+#include "node_attributes.hpp"
 
 struct Node::PrivateMethods
 {
@@ -27,12 +23,12 @@ struct Node::PrivateMethods
             zmq::recv_result_t responseStatus = self.socket.recv(response, zmq::recv_flags::none);
         }
         catch (std::exception &exc){
-            std::cerr << "error" << std::endl;
+            std::cerr << "Error while recieving message to address: " << self.address\
+                << std::endl << exc.what() << std::endl;
         }
         
         return response.to_string();
     }
-   
 };
 
 Node::Node(std::string &port)
@@ -41,26 +37,27 @@ Node::Node(std::string &port)
     {
         this->socket = (zmq::socket_t(context, zmq::socket_type::req));
         
-        this->address = "tcp://localhost:" + port;
-        this->socket.connect(this->address);
+        address = "tcp://localhost:" + port;
+        this->socket.connect(address);
     }
     catch (std::exception &exc){
-        std::cerr << "Error while connecting from address: " << this->address \
+        std::cerr << "Error while connecting from address: " << address \
             << std::endl << exc.what() << std::endl;
     }
 }
 
 std::string Node::SendRequest(std::string &messageStr)
 {
+    locker.try_lock();
+    
     PrivateMethods::SendMessage(*this, messageStr);
     return PrivateMethods::RecieveMessage(*this);
+    
+    locker.unlock();
 }
 
 Node::~Node()
 {
-    std::string terminate = "END_OF_INPUT";
-    //SendMessage(terminate);
-
     socket.disconnect(address);
     socket.close();
     context.close();
