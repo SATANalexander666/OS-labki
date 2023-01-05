@@ -67,10 +67,10 @@ WrappedNode::WrappedNode(std::string port){
 }
 
 std::string WrappedNode::SendRequest(std::string &messageStr){
-   return this->node->SendRequest(messageStr);
+   return node->SendRequest(messageStr);
 }
 
 WrappedNode::~WrappedNode(){
-    delete this->node;
+    delete node;
 }
 

@@ -1,5 +1,7 @@
 #include "server_utils.hpp"
 #include "node_attributes.hpp"
+#include <exception>
+#include <string>
 
 std::map<std::string, WrappedNode> nodeMap;
 
@@ -41,9 +43,9 @@ TCmdArgs UnpackCommand(std::string &str)
     return result;
 }
 
-TCmdReturn CreateNode(std::string &id)
+TCmdCrtReturn CreateNode(std::string &id)
 {
-    TCmdReturn result;
+    TCmdCrtReturn result;
 
     if (nodeMap.count(id))
     {
@@ -71,7 +73,6 @@ TCmdReturn CreateNode(std::string &id)
         free(argv[0]);
         free(argv[1]);
     
-        result.pid = pid;
         result.comment = "Ok: " + std::to_string(pid);
 
         nodeMap.insert(std::make_pair(id, WrappedNode(port)));
@@ -87,23 +88,23 @@ TCmdReturn CreateNode(std::string &id)
     return result;
 }
 
-TCmdReturn RemoveNode(std::string id)
+std::string RemoveNode(std::string &id)
 {
-    TCmdReturn result;
+    std::string result;
     std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
     
     if (it == nodeMap.end())
     {
-        result.comment = "Error: Not found";
+        result = "Error: Not found";
         return result;
     }
 
-    std::cout << "[worker]\n";
     try
     {  
         std::string request = "PID";
         std::string response = it->second.SendRequest(request);
 
+        std::cout << "[worker]\n";
         std::cout << response << std::endl;
         kill(std::stoi(response), SIGKILL);
     }
@@ -112,11 +113,10 @@ TCmdReturn RemoveNode(std::string id)
         std::cerr << "Error while killing process with id - " \
             << id << std::endl << exc.what() << std::endl;
 
-        result.comment = "Error: uncallable pid";
+        result = "Error: uncallable pid";
     }
 
-    try
-    {
+    try{
         nodeMap.erase(it); 
     }
     catch(std::exception &exc)
@@ -124,32 +124,46 @@ TCmdReturn RemoveNode(std::string id)
         std::cerr << "Error while removing node with id - " \
             << id << " from map\n" << exc.what() << std::endl;
 
-        result.comment = "Error: I broke map ;(";
+        result = "Error: I broke map ;(";
     }
 
     return result;
 }
 
-void ExecCommand(std::string clientCommand, std::promise<TCmdReturn> &&port)
+void ExecNode(std::string &id, std::vector<int> &args, std::promise<TCmdExecReturn> &&result)
 {
-    TCmdArgs args = UnpackCommand(clientCommand); 
-    TCmdReturn result;
+    TCmdExecReturn localResult;
 
-    if (!(args.command).compare("create"))
+    std::map<std::string, WrappedNode>::iterator it = nodeMap.find(id);
+
+    if (it == nodeMap.end())
     {
-        result = CreateNode(args.id);    
-        result.command = "create";
-    }
-    else if (!(args.command).compare("remove"))
-    {
-        result = RemoveNode(args.id);
-        result.command = "remove";
-    }
-    else if (!(args.command).compare("exec"))
-    {
-        result.command = "exec";
+        localResult.comment = "Error: " + id + ": Not found";
+        result.set_value(localResult);
+
+        return;
     }
 
-    port.set_value(result);
+    try
+    {
+        std::string request;
+
+        for (int &elem : args){
+            request += std::to_string(elem) + " ";
+        }
+
+        std::cout << request << std::endl;
+    }
+    catch(std::exception &exc)
+    {
+        std::cerr << "Error while accesing node with id - " \
+            << id << std::endl << exc.what() << std::endl;
+
+        localResult.comment = "Error: " + id + ": Node is unavaliable";
+        result.set_value(localResult);
+
+        return;
+    }
+
 }
 
