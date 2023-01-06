@@ -43,8 +43,6 @@ int main (int argc, char const *argv[])
         std::string requestStr = RecieveMessage(socket);
         TCmdArgs arguments = UnpackCommand(requestStr);
 
-        std::cout << requestStr << std::endl;
-
         if (!arguments.command.compare("create")){
             responseQueue.push(CreateNode(arguments.id));
         }
@@ -77,8 +75,6 @@ int main (int argc, char const *argv[])
             }
 
             responseQueue.push(RemoveNode(arguments.id));
-
-            std::cout << "succes\n"; 
         }
         
         if (!arguments.command.compare("pingall")){

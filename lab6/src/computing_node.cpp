@@ -44,15 +44,19 @@ int main(int argc, char* argv[])
     {
         requestStr = RecieveMessage(socket);
 
-        if (!requestStr.compare("PID")){
-            responseStr = std::to_string(getpid()).c_str();
+        if (!requestStr.compare("PID"))
+        {
+            responseStr = std::to_string(getpid());
+            SendMessage(socket, responseStr);
+
+            break;
         }
         else if (!requestStr.compare("exec"))
         {
             responseStr = "accept";
             SendMessage(socket, responseStr); 
             std::string arguments = RecieveMessage(socket);
-            responseStr = std::to_string(countSum(arguments)).c_str();
+            responseStr = std::to_string(countSum(arguments));
         }
         else if (!requestStr.compare("ping")){
             responseStr = "alive";

@@ -51,5 +51,5 @@ do
     idx=$((port * 2))
 done
 
-fuser -k 1033/tcp
+#fuser -k 1033/tcp
 

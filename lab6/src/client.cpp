@@ -35,8 +35,6 @@ int main (int argc, char const *argv[])
     str = "END_OF_INPUT";
     SendMessage(socket, str);
 
-    std::cout << "client\n"; 
-
     while (true)
     {
         zmq::message_t response;
@@ -47,7 +45,6 @@ int main (int argc, char const *argv[])
         }
 
         std::cout << response.to_string() << std::endl;
-    
     }
 
     socket.disconnect(address);

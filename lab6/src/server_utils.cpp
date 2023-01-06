@@ -109,9 +109,6 @@ std::string RemoveNode(std::string &id)
 
     try
     {  
-        request = "END_OF_INPUT";
-        it->second->SendRequest(request);
-
         kill(std::stoi(response), SIGKILL);
     }
     catch(std::exception &exc)
