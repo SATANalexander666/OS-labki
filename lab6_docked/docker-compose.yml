@@ -1,0 +1,23 @@
+version: "2.14.2"
+
+services:
+
+  server:
+    
+    build: server/
+
+    command: ./server
+
+    ports:
+      - 4040:4040
+
+  client:
+
+    build: client/
+
+    command: ./client < ../../code/input/simple.txt
+
+    network_mode: host
+
+    depends_on:
+      - server
