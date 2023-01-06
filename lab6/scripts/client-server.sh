@@ -6,7 +6,7 @@ cd ${exec_dir}
 ./server &
 server_pid=$!
 
-./client < ../in.txt &
+./client < "../input/${1}.txt" &
 client_pid=$!
 
 for i in {1..5};
@@ -41,5 +41,15 @@ if [ -n "$(ps -p ${server_pid} -o pid=)" ]; then
     echo "Server terminated."
 fi
 
-#fuser -k 1147/tcp
+idx=1
+port=1024
+
+for i in {1..11}
+do
+    port=$((port + idx))
+    fuser -k "${port}/tcp"
+    idx=$((port * 2))
+done
+
+fuser -k 1033/tcp
 

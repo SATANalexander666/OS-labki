@@ -1,8 +1,11 @@
 #include "server_utils.hpp"
 #include "node_attributes.hpp"
+#include <zmq_utils.hpp>
+
 #include <exception>
 #include <mutex>
 #include <string>
+#include <zmq.hpp>
 
 std::map<std::string, Node*> nodeMap;
 std::mutex locker;
@@ -93,7 +96,6 @@ std::string CreateNode(std::string &id)
 std::string RemoveNode(std::string &id)
 {
     std::string result;
-    std::string response;
 
     std::map<std::string, Node*>::iterator it = nodeMap.find(id);
     
@@ -102,12 +104,12 @@ std::string RemoveNode(std::string &id)
         result = "Error: Not found";
         return result;
     }
+        
+    std::string request = "PID";
+    std::string response = it->second->SendRequest(request);
 
     try
     {  
-        std::string request = "PID";
-        std::string response = it->second->SendRequest(request);
-
         request = "END_OF_INPUT";
         it->second->SendRequest(request);
 
@@ -145,12 +147,26 @@ void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &
 
     std::map<std::string, Node*>::iterator it = nodeMap.find(id);
 
-    if (it == nodeMap.end())
+    if (!nodeMap.count(id))
     {
         resultStr = "Error: " + id + ": Not found";
         result.set_value(resultStr);
 
         return;
+    }
+
+    try
+    {
+        std::string request = "exec";
+        std::string response = it->second->SendRequest(request);
+    }
+    catch(std::exception &exc)
+    {
+        std::cerr << "Error while accesing node with id - " \
+            << id << std::endl << exc.what() << std::endl;
+
+        resultStr = "Error: " + id + ": Node is unavaliable";
+        result.set_value(resultStr);       
     }
 
     try
@@ -175,5 +191,16 @@ void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &
     }
 
     result.set_value(resultStr);
+}
+
+std::string PingAll(void)
+{
+    std::string result = "ping";
+
+    for (std::map<std::string, Node*>::iterator it = nodeMap.begin(); it != nodeMap.end(); ++it)
+    {
+    }
+
+    return result;
 }
 

@@ -54,6 +54,10 @@ int main (int argc, char const *argv[])
         if (!arguments.command.compare("create")){
             responseQueue.push(CreateNode(arguments.id));
         }
+        
+        if (!arguments.command.compare("pingall")){
+            responseQueue.push(PingAll());
+        }
 
         if (!arguments.command.compare("remove"))
         {

@@ -5,6 +5,8 @@
 #include <zmq.hpp>
 #include <iostream>
 
+#include "zmq_utils.hpp"
+
 int main(int argc, char* argv[])
 {
     if (argc < 2)
@@ -16,44 +18,56 @@ int main(int argc, char* argv[])
     std::string port = argv[1];
     std::string address = "tcp://*:" + port;
 
-    //std::cout << "[node] " << address << std::endl;
-
     zmq::context_t context;
     zmq::socket_t socket(context, zmq::socket_type::pair);
     socket.bind(address);
 
+    std::string requestStr;
+    std::string responseStr;
+
+    auto countSum = [](std::string strArg) -> int
+    {   
+        std::stringstream strStream;
+        std::string strNum;
+        int num = 0;
+        strStream << strArg;
+
+        while (std::getline(strStream, strNum, ' ')){
+            num += std::stoi(strNum);
+        }
+
+        return num;
+    };
+
     while (true)
     {
-        zmq::message_t request;
-        zmq::recv_result_t requestStatus = socket.recv(request, zmq::recv_flags::none);
-        std::string requestStr = request.to_string();
+        requestStr = RecieveMessage(socket);
 
-        std::string responseStr;
+        std::cout << requestStr << std::endl;
 
         if (!requestStr.compare("PID")){
-            responseStr = std::to_string(getpid());
+            responseStr = std::to_string(getpid()).c_str();
         }
-        else if (requestStr.compare("END_OF_INPUT"))
+        else if (!requestStr.compare("exec"))
         {
-            std::stringstream strStream;
-            strStream << requestStr;
-            std::string str;
-            int num = 0;
-
-            while (std::getline(strStream, str, ' ')){
-                num += std::stoi(str);
-            }
-
-            responseStr = std::to_string(num);
+            SendMessage(socket, "accept"); 
+            std::string arguments = RecieveMessage(socket);
+            responseStr = std::to_string(countSum(arguments)).c_str();
         }
-            
-        zmq::message_t response(responseStr.data(), responseStr.length());
-        zmq::send_result_t responseStatus = socket.send(response, zmq::send_flags::none);
-         
-        if (!requestStr.compare("END_OF_INPUT")){
+        else if (!requestStr.compare("ping")){
+            responseStr = "alive";
+        }
+        else if (!requestStr.compare("END_OF_INPUT")){
             break;
         }
+        else {
+            std::cerr << "[node: " << port << "] Unknown command\n";
+        }
+            
+        SendMessage(socket, responseStr);
     }
+
+    std::cout << "Exit " << port << std::endl;
 
     socket.close();
     context.close();

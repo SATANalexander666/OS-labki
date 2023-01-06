@@ -6,7 +6,7 @@ cd ${exec_dir}
 ./computing_node 4040 &
 server_pid=$!
 
-./client < ../in.txt &
+./client < ../input/1.txt &
 client_pid=$!
 
 for i in {1..5};
