@@ -1,5 +1,6 @@
 #include "parent.h"
 #include "utils.h"
+#include <semaphore.h>
 
 void ParentRoutine(FILE* fin)
 {
@@ -178,7 +179,9 @@ void ParentRoutine(FILE* fin)
 
     munmap(map1, mapSize);
     munmap(map2, mapSize);
-
-	unlink("semaphore1");
-	unlink("semaphore2");
+    
+    sem_close(sem1);
+    sem_close(sem2);
+	sem_unlink("semaphore1");
+	sem_unlink("semaphore2");
 }

@@ -1,0 +1,27 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab2/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include  -o CMakeFiles/child.dir/src/child.o -c /home/axr/prog/study/OS/main/lab2/src/child.c",
+  "file": "/home/axr/prog/study/OS/main/lab2/src/child.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab2/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include  -o CMakeFiles/child.dir/src/utils.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
+  "file": "/home/axr/prog/study/OS/main/lab2/src/utils.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab2/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include  -o CMakeFiles/lab2.dir/main.o -c /home/axr/prog/study/OS/main/lab2/main.c",
+  "file": "/home/axr/prog/study/OS/main/lab2/main.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab2/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include  -o CMakeFiles/lab2.dir/src/parent.o -c /home/axr/prog/study/OS/main/lab2/src/parent.c",
+  "file": "/home/axr/prog/study/OS/main/lab2/src/parent.c"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab2/build",
+  "command": "/usr/bin/cc  -I/home/axr/prog/study/OS/main/lab2/include  -o CMakeFiles/lab2.dir/src/utils.o -c /home/axr/prog/study/OS/main/lab2/src/utils.c",
+  "file": "/home/axr/prog/study/OS/main/lab2/src/utils.c"
+}
+]

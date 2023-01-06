@@ -1,0 +1,23 @@
+create 1
+create 2
+create 4
+create 8
+create 16
+create 32
+create 64
+create 128
+create 256
+create 512
+create 1024
+pingall
+remove 1
+remove 2
+remove 4
+remove 8
+remove 16
+remove 32
+remove 64
+remove 128
+remove 256
+remove 512
+remove 1024

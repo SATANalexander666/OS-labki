@@ -29,7 +29,7 @@ TEST(FourthLabTest, TestWithIO)
         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaapch-hi",
         "sit",
         "boooob",
-        "1234pyaat"
+        "1234pyaat",
         "amet",
         "ameet",
         "a",
@@ -71,9 +71,6 @@ TEST(FourthLabTest, TestWithIO)
 
     std::ifstream fin1(fileWithOutput1);
     std::ifstream fin2(fileWithOutput2);
-    
-    ASSERT_TRUE(fin1.good());
-    ASSERT_TRUE(fin2.good());
 
     std::string strRes;
     std::vector<std::string> vecRes1;

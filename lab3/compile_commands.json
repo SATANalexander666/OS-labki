@@ -1,0 +1,17 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab3/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include  -o CMakeFiles/lab3.dir/main.o -c /home/axr/prog/study/OS/main/lab3/main.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab3/main.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab3/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include  -o CMakeFiles/lab3.dir/src/body.o -c /home/axr/prog/study/OS/main/lab3/src/body.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab3/src/body.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab3/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab3/include  -o CMakeFiles/lab3.dir/src/utils.o -c /home/axr/prog/study/OS/main/lab3/src/utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab3/src/utils.cpp"
+}
+]

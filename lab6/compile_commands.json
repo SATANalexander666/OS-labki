@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/server.dir/src/server.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/server.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/server.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/server.dir/src/server_utils.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/server_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/server_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/server.dir/src/node_attributes.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/node_attributes.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/node_attributes.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/server.dir/src/zmq_utils.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/client.dir/src/client.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/client.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/client.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/client.dir/src/zmq_utils.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/computing_node.dir/src/computing_node.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/computing_node.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/computing_node.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/lab6/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/lab6/include  -std=c++17 -pthread -o CMakeFiles/computing_node.dir/src/zmq_utils.cpp.o -c /home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/lab6/src/zmq_utils.cpp"
+}
+]

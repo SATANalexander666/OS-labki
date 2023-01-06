@@ -1,7 +1,5 @@
-in
 include
-out
 src
 CMakeLists.txt
 main.cpp
-make
+make.sh
