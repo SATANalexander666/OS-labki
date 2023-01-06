@@ -1,10 +1,7 @@
-#include <cstdlib>
-#include <ostream>
 #include <sstream>
 #include <string>
 #include <unistd.h>
 #include <zmq.hpp>
-#include <iostream>
 
 #include "zmq_utils.hpp"
 

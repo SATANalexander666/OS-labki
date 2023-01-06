@@ -1,12 +1,10 @@
-#include <sstream>
-#include <zmq.hpp>
-
-#include "node_attributes.hpp"
 #include "zmq_utils.hpp"
 
 #include <string>
+#include <sstream>
 #include <iostream>
 #include <stdexcept>
+#include <zmq.hpp>
 
 int main (int argc, char const *argv[]) 
 {

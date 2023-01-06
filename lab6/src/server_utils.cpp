@@ -13,6 +13,17 @@ std::map<std::string, Node*> nodeMap;
 
 const int MIN_PORT = 1024;
 
+int FindById(std::vector<TWorker> &arr, std::string &id)
+{
+    for (int i = 0; i < (int)arr.size(); ++i){
+        if (!id.compare(arr[i].id)){
+            return i;
+        }
+    }
+
+    return -1;
+}
+
 TCmdArgs UnpackCommand(std::string &str)
 {
     TCmdArgs result;

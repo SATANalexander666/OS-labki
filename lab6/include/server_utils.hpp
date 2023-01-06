@@ -22,6 +22,16 @@ struct TCmdArgs
 };
 
 TCmdArgs UnpackCommand(std::string &str);
+
+struct TWorker
+{
+    std::string id;
+    std::future<std::string> prom;
+    std::thread trd;
+};
+
+int FindById(std::vector<TWorker> &arr, std::string &id);
+
 std::string CreateNode(std::string &id);
 std::string RemoveNode(std::string &id);
 void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &&result);

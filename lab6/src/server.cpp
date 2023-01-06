@@ -1,31 +1,9 @@
 #include "server_utils.hpp"
 #include "zmq_utils.hpp"
-#include <ostream>
-#include <vector>
-#include <zmq.hpp>
 
 #include <queue>
 #include <thread>
 #include <future>
-#include <set>
-
-struct TWorker
-{
-    std::string id;
-    std::future<std::string> prom;
-    std::thread trd;
-};
-
-int FindById(std::vector<TWorker> &arr, std::string &id)
-{
-    for (int i = 0; i < (int)arr.size(); ++i){
-        if (!id.compare(arr[i].id)){
-            return i;
-        }
-    }
-
-    return -1;
-}
 
 int main (int argc, char const *argv[]) 
 {
