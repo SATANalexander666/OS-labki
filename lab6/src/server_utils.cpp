@@ -1,5 +1,7 @@
 #include "server_utils.hpp"
 #include "node_attributes.hpp"
+#include <cstdlib>
+#include <cstring>
 #include <zmq_utils.hpp>
 
 #include <exception>
@@ -109,7 +111,15 @@ std::string RemoveNode(std::string &id)
 
     try
     {  
-        kill(std::stoi(response), SIGKILL);
+        std::string fuserArg = std::to_string(std::stoi(id) + MIN_PORT) + "/tcp";
+
+        char* argv[3];
+        argv[0] = (char*)malloc(6);
+        strcpy(argv[0], "fuser");
+        argv[1] = (char*)malloc(3);
+        strcpy(argv[1], "-k");
+        argv[2] = (char*)malloc(fuserArg.length());
+        strcpy(argv[2], fuserArg.data()); 
     }
     catch(std::exception &exc)
     {
@@ -153,20 +163,6 @@ void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &
 
     try
     {
-        std::string request = "exec";
-        std::string response = it->second->SendRequest(request);
-    }
-    catch(std::exception &exc)
-    {
-        std::cerr << "Error while accesing node with id - " \
-            << id << std::endl << exc.what() << std::endl;
-
-        resultStr = "Error: " + id + ": Node is unavaliable";
-        result.set_value(resultStr);       
-    }
-
-    try
-    {
         std::string request;
 
         for (int &elem : args){
@@ -191,10 +187,13 @@ void ExecNode(std::string id, std::vector<int> args, std::promise<std::string> &
 
 std::string PingAll(void)
 {
-    std::string result = "ping";
+    std::string result = "Ping: dead - ";
 
     for (std::map<std::string, Node*>::iterator it = nodeMap.begin(); it != nodeMap.end(); ++it)
     {
+        if (!(it->second->Ping())){
+            result += it->first + " ";
+        }
     }
 
     return result;

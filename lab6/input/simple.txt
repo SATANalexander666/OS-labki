@@ -1,3 +1,7 @@
 create 9
+create 10
 exec 9 1 2 3
+exec 10 5 6
+exec 9 3 4
+remove 10
 remove 9

@@ -1,8 +1,10 @@
 #include "node_attributes.hpp"
 #include "zmq_utils.hpp"
 
+#include <chrono>
 #include <exception>
 #include <zmq.hpp>
+#include <zmq_addon.hpp>
 
 Node::Node(std::string &port)
 {
@@ -39,11 +41,17 @@ std::string Node::SendRequest(std::string &messageStr)
     return result;
 }
 
-std::string Ping()
+bool Node::Ping()
 {
-    std::string result;
+    std::string request = "PING";
+    std::string response = SendRequest(request);
 
-    return result;
+    if (!response.compare("ALIVE")){
+        return 1;
+    }
+
+
+    return 0;
 }
 
 

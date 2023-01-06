@@ -51,21 +51,15 @@ int main(int argc, char* argv[])
 
             break;
         }
-        else if (!requestStr.compare("exec"))
-        {
-            responseStr = "accept";
-            SendMessage(socket, responseStr); 
-            std::string arguments = RecieveMessage(socket);
-            responseStr = std::to_string(countSum(arguments));
-        }
-        else if (!requestStr.compare("ping")){
-            responseStr = "alive";
+        else if (!requestStr.compare("PING")){
+            responseStr = "ALIVE";
         }
         else if (!requestStr.compare("END_OF_INPUT")){
             break;
         }
-        else {
-            std::cerr << "[node: " << port << "] Unknown command\n";
+        else 
+        {
+            responseStr = std::to_string(countSum(requestStr));       
         }
             
         SendMessage(socket, responseStr);

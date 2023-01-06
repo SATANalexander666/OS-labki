@@ -22,7 +22,7 @@ class Node
         ~Node();
 
         std::string SendRequest(std::string &messageStr);
-        std::string Ping();
+        bool Ping();
 };
 
 class WrappedNode
