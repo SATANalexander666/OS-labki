@@ -8,7 +8,6 @@
 #include <zmq.hpp>
 
 std::map<std::string, Node*> nodeMap;
-std::mutex locker;
 
 const int MIN_PORT = 1024;
 

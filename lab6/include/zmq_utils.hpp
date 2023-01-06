@@ -6,7 +6,7 @@
 #include <zmq.hpp>
 
 std::string RecieveMessage(zmq::socket_t &socket);
-void SendMessage(zmq::socket_t &socket, std::string responseStr);
+void SendMessage(zmq::socket_t &socket, std::string &responseStr);
 
 #endif
 

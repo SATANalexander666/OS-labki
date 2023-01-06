@@ -1,7 +1,8 @@
 #include <sstream>
 #include <zmq.hpp>
 
-#include <node_attributes.hpp>
+#include "node_attributes.hpp"
+#include "zmq_utils.hpp"
 
 #include <string>
 #include <iostream>
@@ -23,8 +24,7 @@ int main (int argc, char const *argv[])
         {
             try 
             {
-                zmq::message_t request(str.data(), str.length());
-                zmq::send_result_t requestStatus = socket.send(request, zmq::send_flags::none);
+                SendMessage(socket, str);
             }
             catch (std::exception &exc){
                 std::cerr << exc.what() << std::endl;
@@ -33,8 +33,9 @@ int main (int argc, char const *argv[])
     }
 
     str = "END_OF_INPUT";
-    zmq::message_t request(str.data(), str.length());
-    zmq::send_result_t requestStauts = socket.send(request, zmq::send_flags::none);
+    SendMessage(socket, str);
+
+    std::cout << "client\n"; 
 
     while (true)
     {

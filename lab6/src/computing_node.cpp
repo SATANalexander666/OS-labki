@@ -1,4 +1,5 @@
 #include <cstdlib>
+#include <ostream>
 #include <sstream>
 #include <string>
 #include <unistd.h>
@@ -43,14 +44,13 @@ int main(int argc, char* argv[])
     {
         requestStr = RecieveMessage(socket);
 
-        std::cout << requestStr << std::endl;
-
         if (!requestStr.compare("PID")){
             responseStr = std::to_string(getpid()).c_str();
         }
         else if (!requestStr.compare("exec"))
         {
-            SendMessage(socket, "accept"); 
+            responseStr = "accept";
+            SendMessage(socket, responseStr); 
             std::string arguments = RecieveMessage(socket);
             responseStr = std::to_string(countSum(arguments)).c_str();
         }
@@ -66,8 +66,6 @@ int main(int argc, char* argv[])
             
         SendMessage(socket, responseStr);
     }
-
-    std::cout << "Exit " << port << std::endl;
 
     socket.close();
     context.close();

@@ -3,21 +3,22 @@
 
 std::string RecieveMessage(zmq::socket_t &socket)
 {
-    std::string request;
+    std::string result;
 
     try
     {
         zmq::message_t request;
         zmq::recv_result_t requestStatus = socket.recv(request, zmq::recv_flags::none);
+        result = request.to_string();
     }
     catch(std::exception &exc){
         std::cerr << exc.what() << std::endl;
     }
     
-    return request;
+    return result;
 }
 
-void SendMessage(zmq::socket_t &socket, std::string responseStr)
+void SendMessage(zmq::socket_t &socket, std::string &responseStr)
 {
     try
     {
