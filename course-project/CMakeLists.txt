@@ -13,7 +13,6 @@ add_executable(server src/server.cpp
 add_executable(test main.cpp
     include/allias.hpp
     src/zmq_utils.cpp include/zmq_utils.hpp
-    src/utils.cpp include/utils.hpp
 )
 
 target_include_directories(client PRIVATE include)

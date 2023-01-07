@@ -6,10 +6,10 @@ cd ${exec_dir}
 ./server &
 server_pid=$!
 
-./client localhost < "../input/${1}.txt" &
+./client localhost 1 < "../input/${1}.txt" &
 client1_pid=$!
 
-./client localhost < "../input/${1}.txt" &
+./client localhost 2 < "../input/${2}.txt" &
 client2_pid=$!
 
 for i in {1..5};

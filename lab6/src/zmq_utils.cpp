@@ -30,4 +30,3 @@ void SendMessage(zmq::socket_t &socket, std::string &responseStr)
     }
 }
 
-

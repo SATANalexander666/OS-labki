@@ -19,6 +19,9 @@ namespace msg
     const std::string CONNECT = "CONNECT";
     const std::string ROOM_NOT_FOUND = "ROOM_NOT_FOUND";
     const std::string ROOM_EXISTS = "ROOM_EXISTS";
+    const std::string INVALID_COMMAND = "INVALID_COMMAND";
+    const std::string DUMP = "DUMP";
+    const std::string START_GAME = "START_GAME";
 }
 
 namespace room

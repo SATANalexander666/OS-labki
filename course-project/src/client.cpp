@@ -4,9 +4,10 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <iterator>
 #include <string>
 #include <regex>
-
+#include <zmq.hpp>
 
 int main(int argc, char* argv[])
 {
@@ -17,36 +18,30 @@ int main(int argc, char* argv[])
     }
 
     std::string hostName = argv[1];
+    std::string id = argv[2];
+    id += " ";
+
     std::string address = "tcp://" + hostName + ":4040";
     zus::Socket socket(address, utl::CLIENT);
 
-    socket.SendMessage(msg::INIT_CLIENT);
-    std::string response = socket.RecieveMessage();
+    std::string request = id + msg::INIT_CLIENT;
+
+    std::string response = socket.SendRequest(request);
 
     std::string command;
-//    std::cout << "[Game] Choose action:\n 1 - Create room;\n 2 - Connect to room.\n Command: ";
     std::getline(std::cin, command);
-//    std::cout << '\n';
-//    std::cout << "[Game] Give room's name\n Room's name: ";
-//    std::getline(std::cin, room);
-//    std::cout << '\n';
 
-    /*if (!command.compare(msg::CREATE)) {
-        socket.SendMessage(msg::CREATE);
-    }
-
-    if (!command.compare(msg::CONNECT)) {
-        socket.SendMessage(msg::CONNECT);
-    }*/
-
-    socket.SendMessage(command);
-    response = socket.RecieveMessage();
+    request = id + command; 
+    response = socket.SendRequest(request);
 
     RoomName room;
     std::cin >> room;
 
-    socket.SendMessage(room.formatted);
-    std::string port = socket.RecieveMessage();
+    request = id + room.formatted;
+    socket.SendRequest(request);
+
+    request = id + msg::DUMP;
+    std::string port = socket.SendRequest(request);
 
     if (!port.compare(msg::ROOM_NOT_FOUND)){
         std::cout << "Couldn't find room with such name\n";
@@ -57,6 +52,21 @@ int main(int argc, char* argv[])
     else {
         std::cout << port << '\n';
     }
+
+    request = id + msg::START_GAME;
+    socket.SendRequest(request);
+
+    request = id + room.formatted;
+    socket.SendRequest(request);
+
+    request = id + msg::DUMP;
+    socket.SendRequest(request);
+
+    std::string gameAddress = "tcp://localhost:" + port;
+    zus::Socket gameSocket(gameAddress, utl::CLIENT);
+
+    request = id + utl::TERMINATOR;
+    socket.SendMessage(request);
 
     return 0;
 }

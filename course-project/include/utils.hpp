@@ -52,6 +52,7 @@ class RoomsManager
         bool Member(std::string &name);
         std::string GetPort(std::string &name);
         std::string AddRoom(std::string &name);
+        void StartRoom(std::string &name); 
 
         ~RoomsManager();
     private:
