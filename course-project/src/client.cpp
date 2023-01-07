@@ -49,9 +49,6 @@ int main(int argc, char* argv[])
     else if (!port.compare(msg::ROOM_EXISTS)){
         std::cout << "Room with such name already exists\n";
     }
-    else {
-        std::cout << port << '\n';
-    }
 
     request = id + msg::START_GAME;
     socket.SendRequest(request);
@@ -62,12 +59,26 @@ int main(int argc, char* argv[])
     request = id + msg::DUMP;
     socket.SendRequest(request);
 
+    request = id + utl::TERMINATOR;
+    socket.SendRequest(request);
+
     std::string gameAddress = "tcp://localhost:" + port;
     zus::Socket gameSocket(gameAddress, utl::CLIENT);
 
-    request = id + utl::TERMINATOR;
-    socket.SendMessage(request);
+    std::string input;
 
+    while (std::getline(std::cin, input))
+    {
+        if (input.length() > 0)
+        {
+            request = id + input;
+            response = gameSocket.SendRequest(request);
+        }
+    }
+
+    request = id + game::QUIT;
+    gameSocket.SendRequest(request);
+    
     return 0;
 }
 

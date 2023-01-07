@@ -14,7 +14,7 @@ namespace utl
 
 namespace game
 {
-    const std::string KILL = "KILL";
+    const std::string CONFIRM = "CONFIRM";
     const std::string QUIT = "QUIT";
 }
 

@@ -77,7 +77,7 @@ void zus::Socket::SendMessage(const std::string &requestStr)
         zmq::send_result_t responseStatus = this->socket.send(response, zmq::send_flags::none);
     }
     catch(std::exception &exc){
-        std::cerr << "[socket: " << this->address << "] " << exc.what() << std::endl;
+        std::cerr << "[socket: msg: " << ", " << this->address << "] " << exc.what() << std::endl;
     }
 }
 
@@ -120,7 +120,7 @@ zus::Socket::~Socket()
 {
     if (!this->socketType.compare(utl::CLIENT))
     {
-        std::string request = "0 " + utl::TERMINATOR; 
+        //std::string request = "0 " + utl::TERMINATOR; 
         //SendMessage(request);
         this->socket.disconnect(this->address);
     }
