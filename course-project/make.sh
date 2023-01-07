@@ -15,4 +15,6 @@ make
 mv ${build_dir}/compile_commands.json ${main_dir}/compile_commands.json
 mv server ${exec_dir}
 mv client ${exec_dir}
+mv room ${exec_dir}
 mv test ${exec_dir}
+

@@ -31,6 +31,26 @@
 },
 {
   "directory": "/home/axr/prog/study/OS/main/course-project/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/course-project/include  -o CMakeFiles/room.dir/src/room.o -c /home/axr/prog/study/OS/main/course-project/src/room.cpp",
+  "file": "/home/axr/prog/study/OS/main/course-project/src/room.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/course-project/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/course-project/include  -o CMakeFiles/room.dir/src/zmq_utils.o -c /home/axr/prog/study/OS/main/course-project/src/zmq_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/course-project/src/zmq_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/course-project/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/course-project/include  -o CMakeFiles/room.dir/src/utils.o -c /home/axr/prog/study/OS/main/course-project/src/utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/course-project/src/utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/course-project/build",
+  "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/course-project/include  -o CMakeFiles/room.dir/src/game_utils.o -c /home/axr/prog/study/OS/main/course-project/src/game_utils.cpp",
+  "file": "/home/axr/prog/study/OS/main/course-project/src/game_utils.cpp"
+},
+{
+  "directory": "/home/axr/prog/study/OS/main/course-project/build",
   "command": "/usr/bin/c++  -I/home/axr/prog/study/OS/main/course-project/include  -o CMakeFiles/test.dir/main.o -c /home/axr/prog/study/OS/main/course-project/main.cpp",
   "file": "/home/axr/prog/study/OS/main/course-project/main.cpp"
 },
