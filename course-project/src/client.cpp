@@ -9,76 +9,61 @@
 #include <regex>
 #include <zmq.hpp>
 
+std::string WithId(std::string &id, std::string &str){
+    return std::string(id + " " + str);
+}
+
 int main(int argc, char* argv[])
 {
-    if (argc < 2)
-    {
-        std::cerr << "Too few arguments\n";
-        exit(EXIT_FAILURE);
-    }
-
-    std::string hostName = argv[1];
+    std::string port = argv[1];
     std::string id = argv[2];
-    id += " ";
 
-    std::string address = "tcp://" + hostName + ":4040";
+    std::string address = "tcp://localhost:" + port;
     zus::Socket socket(address, utl::CLIENT);
 
-    std::string request = id + msg::INIT_CLIENT;
+    ClientCommand cmd(id);
 
-    std::string response = socket.SendRequest(request);
+    std::string input, response, request = cmd.INIT_CLIENT;
 
-    std::string command;
-    std::getline(std::cin, command);
+    std::cout << "Log in -> ";
+    std::cin >> input;
+    request += " " + input + " ";
 
-    request = id + command; 
     response = socket.SendRequest(request);
+    request = id + " ";
 
-    RoomName room;
-    std::cin >> room;
+    std::cout << "\nCREATE - create room,\n CONNECT - connect to the room.\n-> ";
+    std::cin >> input;
+    request += input;
 
-    request = id + room.formatted;
-    socket.SendRequest(request);
+    std::cout << "\nEnter lobby name ->";
+    std::cin >> input;
+    request += " " + input;
 
-    request = id + msg::DUMP;
-    std::string port = socket.SendRequest(request);
-
-    if (!port.compare(msg::ROOM_NOT_FOUND)){
-        std::cout << "Couldn't find room with such name\n";
-    }
-    else if (!port.compare(msg::ROOM_EXISTS)){
-        std::cout << "Room with such name already exists\n";
-    }
-
-    request = id + msg::START_GAME;
-    socket.SendRequest(request);
-
-    request = id + room.formatted;
-    socket.SendRequest(request);
-
-    request = id + msg::DUMP;
-    socket.SendRequest(request);
-
-    request = id + utl::TERMINATOR;
-    socket.SendRequest(request);
-
-    std::string gameAddress = "tcp://localhost:" + port;
-    zus::Socket gameSocket(gameAddress, utl::CLIENT);
-
-    std::string input;
+    std::cout << request << '\n';
+    response = socket.SendRequest(request);
 
     while (std::getline(std::cin, input))
     {
-        if (input.length() > 0)
+        std::cout << sym::BOLDGREEN << "\nCommands:\n0 - start game;\n" \
+            << sym::BOLDYELLOW << "1 <number> - choose <number>\n" \
+            << sym::BOLDBLUE << "2 <user> - print stat of <user>\n";
+
+        if (input.length())
         {
-            request = id + input;
-            response = gameSocket.SendRequest(request);
+            request = id + " " + input;
+            response = socket.SendRequest(request);
         }
+
+        if (response.length()){
+            std::cout << sym::BOLDRED << response << sym::RESET << '\n';
+        }
+
     }
 
-    request = id + game::QUIT;
-    gameSocket.SendRequest(request);
-    
+    request = cmd.TERMINATOR;
+    socket.SendRequest(request);
+
     return 0;
 }
 

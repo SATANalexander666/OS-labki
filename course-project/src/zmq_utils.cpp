@@ -117,11 +117,12 @@ std::string zus::Socket::SendResponse(const std::string &responseStr)
 }
 
 zus::Socket::~Socket()
-{
+{     
+   
     if (!this->socketType.compare(utl::CLIENT))
     {
-        //std::string request = "0 " + utl::TERMINATOR; 
-        //SendMessage(request);
+        std::string request = utl::TERMINATOR; 
+        SendRequest(request);
         this->socket.disconnect(this->address);
     }
 

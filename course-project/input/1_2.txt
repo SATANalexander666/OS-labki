@@ -1,4 +1,7 @@
+bill
 CONNECT
-room
-C2
-CONFIRM
+lobster_room
+START_GAME
+KILL bill 4
+STAT
+

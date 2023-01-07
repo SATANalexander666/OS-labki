@@ -75,7 +75,7 @@ Room::~Room(){
 
 RoomsManager::RoomsManager()
 {
-    std::ifstream fin(room::PATH_TO_DB);
+    std::ifstream fin(room::PATH_TO_GAMES_DS);
     std::string str;
 
     while (std::getline(fin, str)){
@@ -132,7 +132,7 @@ void RoomsManager::StartRoom(std::string &name)
 
 RoomsManager::~RoomsManager()
 {
-    std::ofstream fout(room::PATH_TO_DB);
+    std::ofstream fout(room::PATH_TO_USERS_DB);
 
     for (const Room &elem : rooms){
         fout << elem.name.formatted << " " << elem.port << '\n';

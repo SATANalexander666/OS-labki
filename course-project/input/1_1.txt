@@ -1,4 +1,5 @@
-CONNECT
-room
-D2
-CONFIRM
+bob
+CREATE
+lobster_room
+START_GAME
+KILL bob 900

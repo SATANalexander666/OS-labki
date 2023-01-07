@@ -29,8 +29,15 @@ target_include_directories(server PRIVATE include)
 target_include_directories(room PRIVATE include)
 target_include_directories(test PRIVATE include)
 
-target_link_libraries(client zmq)
-target_link_libraries(server zmq)
-target_link_libraries(room zmq)
-target_link_libraries(test zmq)
+find_package(cppzmq)
+
+target_link_libraries(client cppzmq)
+target_link_libraries(server cppzmq)
+target_link_libraries(room cppzmq)
+target_link_libraries(test cppzmq)
+
+#target_link_libraries(client zmq)
+#target_link_libraries(server zmq)
+#target_link_libraries(room zmq)
+#target_link_libraries(test zmq)
 
