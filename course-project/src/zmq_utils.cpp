@@ -63,9 +63,9 @@ zus::Socket::Socket(const std::string &address, const std::string &socketType)
         }
     }
     catch (std::exception &exc){
-        std::cerr << sym::RED << "[Error:]" << sym::RESET \
-            << " socket: " << address << ": " \
-            << exc.what() << std::endl;
+        //std::cerr << sym::RED << "[Error:]" << sym::RESET \
+        //    << " socket: " << address << ": " \
+        //    << exc.what() << std::endl;
     }
 }
 
@@ -118,7 +118,10 @@ std::string zus::Socket::SendResponse(const std::string &responseStr)
 
 zus::Socket::~Socket()
 {
-    if (!this->socketType.compare(utl::CLIENT)){
+    if (!this->socketType.compare(utl::CLIENT))
+    {
+        std::string request = "0 " + utl::TERMINATOR; 
+        //SendMessage(request);
         this->socket.disconnect(this->address);
     }
 

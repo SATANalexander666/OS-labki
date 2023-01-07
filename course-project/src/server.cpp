@@ -1,14 +1,16 @@
 #include "zmq_utils.hpp"
 #include "utils.hpp"
 #include "allias.hpp"
+#include "server_utils.hpp"
+
 #include <sstream>
 #include <string>
 #include <vector>
 #include <zmq.hpp>
-
+#include <unistd.h>
 #include <queue>
 
-std::string RedirectClient(std::queue<std::string> jobs)
+std::string RedirectClient(std::queue<std::string> jobs, std::set<std::string> &active)
 {
     std::string result;
 
@@ -43,29 +45,16 @@ std::string RedirectClient(std::queue<std::string> jobs)
         }
         else if (!command.compare(msg::START_GAME))
         {
-            manager.StartRoom(jobs.front());
-
+            if (!active.count(jobs.front()))
+            {
+                manager.StartRoom(jobs.front());
+                active.insert(jobs.front());
+            }
             jobs.pop();
         }
     }
 
     return result;
-}
-
-int Unpack(std::string &str)
-{
-    std::string resultStr;
-    int result;
-
-    std::stringstream strStream;
-    strStream << str;
-
-    std::getline(strStream, resultStr, ' ');
-    std::getline(strStream, str, ' ');
-
-    result = std::atoi(resultStr.data());
-
-    return result; 
 }
 
 int main()
@@ -74,6 +63,7 @@ int main()
     zus::Socket socket(address, utl::SERVER);
 
     std::map<int, std::queue<std::string> > jobs;
+    std::set<std::string> active;
     int numOfClients = 0;
 
     while (true)
@@ -90,9 +80,10 @@ int main()
                 break;
             }
         }
-        else if (!request.compare(msg::DUMP)){
+        else if (!request.compare(msg::DUMP))
+        {
             std::map<int, std::queue<std::string> >::iterator it = jobs.find(id);
-            std::string response = RedirectClient(it->second);
+            std::string response = RedirectClient(it->second, active);
 
             socket.SendMessage(response);
         }

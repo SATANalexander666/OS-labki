@@ -8,6 +8,7 @@ add_executable(server src/server.cpp
     include/allias.hpp
     src/zmq_utils.cpp include/zmq_utils.hpp
     src/utils.cpp include/utils.hpp
+    src/server_utils.cpp include/server_utils.hpp
 )
 
 add_executable(room src/room.cpp
@@ -15,6 +16,7 @@ add_executable(room src/room.cpp
     src/zmq_utils.cpp include/zmq_utils.hpp
     src/utils.cpp include/utils.hpp
     src/game_utils.cpp include/game_utils.hpp
+    src/server_utils.cpp include/server_utils.hpp
 )
 
 add_executable(test main.cpp

@@ -1,6 +1,7 @@
 #include "utils.hpp"
 #include "allias.hpp"
 
+#include <cstdlib>
 #include <cstring>
 #include <iostream>
 #include <fstream>
@@ -57,6 +58,13 @@ Room::Room(std::string &name, std::string &port)
     this->name = RoomName(name);
 }
 
+Room::Room(std::string &name, std::string &port, bool running)
+{
+    this->port = port;
+    this->name = RoomName(name);
+    this->running = running;
+}
+
 Room::~Room(){
 
 }
@@ -111,22 +119,15 @@ std::string RoomsManager::AddRoom(std::string &name)
 void RoomsManager::StartRoom(std::string &name)
 {
     std::set<Room>::iterator it = rooms.find(name);
-    
-    char* argv[3];
-    argv[0] = (char*)malloc(6);
-    strcpy(argv[0], "./room");
-    argv[1] = (char*)malloc(it->port.length());
-    strcpy(argv[1], it->port.data());
-    argv[2] = NULL;
+    //std::string cmd = "./room " + it->port;
+
+    //system(cmd.data());
 
     int pid = fork();
 
     if (!pid){
-        execv(argv[0], argv);
+        execl("./room", "room", it->port.data(), NULL);
     }
-
-    free(argv[0]);
-    free(argv[1]);
 }
 
 RoomsManager::~RoomsManager()

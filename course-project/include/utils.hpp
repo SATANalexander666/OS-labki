@@ -31,13 +31,14 @@ class Room
     public:
         RoomName name;
         std::string port;
+        bool running{0};
 
         Room(std::string &line);
         Room(std::string &name, std::string &port);
+        Room(std::string &name, std::string &port, bool running);
         ~Room();
 
     private:
-        ;
 };
 
 

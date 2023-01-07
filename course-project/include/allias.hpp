@@ -9,7 +9,13 @@ namespace utl
     const std::string CLIENT = "CLIENT";
     const std::string SERVER = "SERVER";
 
-    const int MIN_PORT = 1024;
+    const int MIN_PORT = 5554;
+}
+
+namespace game
+{
+    const std::string KILL = "KILL";
+    const std::string QUIT = "QUIT";
 }
 
 namespace msg
@@ -26,6 +32,7 @@ namespace msg
 
 namespace room
 {
+    const std::string PATH_TO_ROOM = "/home/axr/prog/study/OS/main/course-project/executables/room";
     const std::string PATH_TO_DB = "/home/axr/prog/study/OS/main/course-project/db/sample.txt";
 }
 

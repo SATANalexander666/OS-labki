@@ -7,17 +7,16 @@
 class Canvas
 {
     public:
-        std::vector< std::vector<char> > body;
+        std::vector< std::vector<std::string> > body;
         
         Canvas(int size, int ships);
-
+        void Print();
+        std::string ToString();
         ~Canvas();
 
     private:
         int alive;
 };
-
-std::ostream &operator << (std::ostream &out, Canvas &obj);
 
 #endif
 
