@@ -1,0 +1,76 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage{listings} 
+\usepackage[english,russian]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{indentfirst}
+\usepackage{ulem} 
+
+
+\parindent=1cm
+\makeatletter
+\newcommand{\rindex}[2][\imki@jobname]{%
+	\index[#1]{\detokenize{#2}}%
+}
+\makeatother
+\newcolumntype{P}[1]{>{\raggedbottom\arraybackslash}p{#1}}
+
+\linespread{1}
+\pgfplotsset{compat=1.16}
+\begin{document}
+	
+	\section*{\centering Лабораторная работа №\,3 по курсу :\\ Операционные системы}
+	
+	Выполнил студент группы М8О-201Б-21 \,\, Кварацхелия Александр.
+	
+	\subsection*{Условие}
+	
+	Ознакомиться с сигналами операционной системы UNIX/LINUX, используя утилиту strace, проанализировать результаты, сопоставить их с кодом программы.
+	
+	
+	\subsection*{Метод решения}
+	
+	Использовать свободно распространяемую утилиту strace следующим образом: \\
+	\lstinline[]|strace lab2|
+	
+	\subsection*{Код программы}
+	
+	\subsubsection{main.cpp}
+	
+	\lstinputlisting[language=C++]{../main.cpp}
+	
+	\subsubsection*{utils.hpp}
+	
+	\lstinputlisting[language=C++]{../include/utils.hpp}
+	
+	\subsubsection*{body.hpp}
+	
+	\lstinputlisting[language=C++]{../include/body.hpp}
+	
+	\subsubsection{utils.cpp}
+	
+	\lstinputlisting[language=C++]{../src/utils.cpp}
+		
+	\subsection*{Выводы}
+	
+	Вызов $fork$ дублирует породивший его процесс со всеми его переменными, файловыми дескрипторами, приоритетами процесса, рабочий и корневой каталоги, и сегментами выделенной памяти.
+	
+	Ребёнок {\bf не} наследует:
+	\begin{itemize}
+		\item идентификатора процесса (PID, PPID);
+		\item израсходованного времени ЦП (оно обнуляется);
+		\item сигналов процесса-родителя, требующих ответа;
+		\item блокированных файлов (record locking).
+	\end{itemize}
+	
+	В процессе выполнения лабораторной работы были приобретены навыки практического применения создания, обработки и отслеживания их состояния. Для выполнения данного варианта задания создание потоков как таковых не требуется, так как всю работу выполняет системный вызов <<exec>>.
+	
+\end{document}
+
