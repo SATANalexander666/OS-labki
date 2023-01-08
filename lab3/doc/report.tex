@@ -1,0 +1,74 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage{listings} 
+\usepackage[english,russian]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{indentfirst}
+\usepackage{ulem} 
+
+
+\parindent=1cm
+\makeatletter
+\newcommand{\rindex}[2][\imki@jobname]{%
+	\index[#1]{\detokenize{#2}}%
+}
+\makeatother
+\newcolumntype{P}[1]{>{\raggedbottom\arraybackslash}p{#1}}
+
+\linespread{1}
+\pgfplotsset{compat=1.16}
+\begin{document}
+	
+	\section*{\centering Лабораторная работа №\,3 по курсу :\\ Операционные системы}
+	
+	Выполнил студент группы М8О-201Б-21 \,\, Кварацхелия Александр.
+	
+	\subsection*{Условие}
+	
+	Составить программу на языке Си, обрабатывающую данные в многопоточном режиме. При 
+	обработки использовать стандартные средства создания потоков операционной системы 
+	(Windows/Unix). Ограничение потоков должно быть задано ключом запуска вашей программы.
+	Так же необходимо уметь продемонстрировать количество потоков, используемое вашей 
+	программой с помощью стандартных средств операционной системы.
+	В отчете привести исследование зависимости ускорения и эффективности алгоритма от входящих 
+	данных и количества потоков. Получившиеся результаты необходимо объяснить.
+	
+	\subsection*{Задание}
+	
+	Отсортировать массив целых чисел при помощи TimSort.
+	
+	\subsection*{Метод решения}
+	
+	Составленный алгоритм соответсвует принципу $completely lockless$, заключающийся в том, что каждый поток изменяет только те данные, которые не изменяют другие потоки.
+	
+	\subsection*{Код программы}
+	
+	\subsubsection{main.cpp}
+	
+	\lstinputlisting[language=C++]{../main.cpp}
+	
+	\subsubsection*{utils.hpp}
+	
+	\lstinputlisting[language=C++]{../include/utils.hpp}
+	
+	\subsubsection*{body.hpp}
+	
+	\lstinputlisting[language=C++]{../include/body.hpp}
+	
+	\subsubsection{utils.cpp}
+	
+	\lstinputlisting[language=C++]{../src/utils.cpp}
+		
+	\subsection*{Выводы}
+	
+	В процессе выполнения лабораторной работы были приобретены навыки практического применения создания, обработки и отслеживания состояния потоков. Для выполнения данного варианта задания использование примитивов синхронизации не требуется.
+	
+\end{document}
+

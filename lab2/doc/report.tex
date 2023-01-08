@@ -1,0 +1,97 @@
+\documentclass[12pt]{article}
+
+\usepackage[utf8x]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage{listings} 
+\usepackage[english,russian]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{indentfirst}
+\usepackage{ulem} 
+
+
+\parindent=1cm
+\makeatletter
+\newcommand{\rindex}[2][\imki@jobname]{%
+	\index[#1]{\detokenize{#2}}%
+}
+\makeatother
+\newcolumntype{P}[1]{>{\raggedbottom\arraybackslash}p{#1}}
+
+\linespread{1}
+\pgfplotsset{compat=1.16}
+\begin{document}
+	
+	\section*{\centering Лабораторная работа №\,2 по курсу :\\ Операционные системы}
+	
+	Выполнил студент группы М8О-201Б-21 \,\, Кварацхелия Александр.
+	
+	\subsection*{Условие}
+	
+	Составить и отладить программу на языке Си, осуществляющую работу с процессами и
+	взаимодействие между ними в операционной системе UNIX/LINUX. В результате работы
+	программа (основной процесс) должен создать для решение задачи один или несколько
+	дочерних процессов. Взаимодействие между процессами осуществляется через системные
+	сигналы/события и/или каналы ($pipe$).
+	Необходимо обрабатывать системные ошибки, которые могут возникнуть в результате работы.
+	
+	\subsection*{Задание}
+	
+	Родительский процесс создает два дочерних процесса. Первой строкой пользователь в консоль
+	родительского процесса вводит имя файла, которое будет использовано для открытия File с таким
+	именем на запись для child1. Аналогично для второй строки и процесса child2. Родительский и
+	дочерний процесс должны быть представлены разными программами.
+	
+	\par 
+	
+	Родительский процесс принимает от пользователя строки произвольной длины и пересылает их в
+	$pipe1$ или в $pipe2$ в зависимости от правила фильтрации. Процесс $child1$ и $child2$ производят работу
+	над строками. Процессы пишут результаты своей работы в стандартный вывод.
+	
+	\par 
+	
+	Правило фильтрации: с вероятностью 80\% строки отправляются в pipe1, иначе в pipe2.
+	Дочерние процессы удаляют все гласные из строк.
+	
+	\subsection*{Код программы}
+	
+	\subsubsection*{utils.h}
+	
+	\lstinputlisting[language=C]{../include/utils.h}
+	
+	\subsubsection*{parent.h}
+	
+	\lstinputlisting[language=C]{../include/parent.h}
+	
+	\subsubsection{utils.c}
+	
+	\lstinputlisting[language=C]{../src/utils.c}
+	
+	\subsubsection{parent.c}
+	
+	\lstinputlisting[language=C]{../src/parent.c}
+	
+	\subsubsection{child.c}
+	
+	\lstinputlisting[language=C]{../src/child.c}
+	
+	\subsection*{Выводы}
+	
+	Вызов $fork$ дублирует породивший его процесс со всеми его переменными, файловыми дескрипторами, приоритетами процесса, рабочий и корневой каталоги, и сегментами выделенной памяти.
+	
+	Ребёнок {\bf не} наследует:
+	\begin{itemize}
+		\item идентификатора процесса (PID, PPID);
+		\item израсходованного времени ЦП (оно обнуляется);
+		\item сигналов процесса-родителя, требующих ответа;
+		\item блокированных файлов (record locking).
+	\end{itemize}
+	
+	В процессе выполнения лабораторной работы были приобретены навыки практического применения создания, обработки и отслеживания их состояния. Для выполнения данного варианта задания создание потоков как таковых не требуется, так как всю работу выполняет системный вызов <<exec>>.
+	
+\end{document}
+
