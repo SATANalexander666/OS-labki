@@ -43,20 +43,24 @@ int main(int argc, char* argv[])
     std::cout << request << '\n';
     response = socket.SendRequest(request);
 
+    std::cout << "\nCommands:\n0 - start game;\n" \
+        << "1 <number> - choose <number>\n" \
+        << "2 <user> - print stat of <user>\n";
+
     while (std::getline(std::cin, input))
     {
-        std::cout << sym::BOLDGREEN << "\nCommands:\n0 - start game;\n" \
-            << sym::BOLDYELLOW << "1 <number> - choose <number>\n" \
-            << sym::BOLDBLUE << "2 <user> - print stat of <user>\n";
-
         if (input.length())
         {
+            if (input.compare(msg::START_GAME)){
+                execl("./gamer", "gamer", argv[1], "5555");
+            }
+
             request = id + " " + input;
             response = socket.SendRequest(request);
         }
 
         if (response.length()){
-            std::cout << sym::BOLDRED << response << sym::RESET << '\n';
+            std::cout << response << '\n';
         }
 
     }

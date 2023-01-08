@@ -1,5 +1,0 @@
-bob
-CREATE
-lobster_room
-START_GAME
-KILL bob 900

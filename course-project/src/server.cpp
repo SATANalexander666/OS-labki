@@ -46,7 +46,7 @@ class StatChecker
                 fout << it->first << " " << it->second << '\n'; 
             }           
         }
-}stat;
+} stat;
 
 struct TArgs
 {
@@ -63,8 +63,6 @@ TArgs GetCommand(std::string &str)
     strm << str;
     std::string str1;
     
-    std::cout << sym::BOLDBLACK;
-
     std::getline(strm, str1, ' ');
     result.id = std::atoi(str.data());
     std::getline(strm, str1, ' ');
@@ -80,40 +78,6 @@ TArgs GetCommand(std::string &str)
 
     return result;
 }
-
-int GetRandom(int min, int max)
-{
-    std::random_device rd;
-    std::mt19937 mt(rd());
-    std::uniform_int_distribution<int> dist(min, max);
-    
-    return dist(mt);
-}
-
-struct Game
-{
-    pii me;
-    pii enemy;
-    bool used{0};
-    bool active{0};
-
-    void Gen(int min, int max)
-    {
-        me = std::make_pair(GetRandom(min, max), GetRandom(min, max));
-        enemy = std::make_pair(GetRandom(min, max), GetRandom(min, max));
-    }
-
-    void Swap(){
-        std::swap(me, enemy);
-    }
-    
-    std::string ToString()
-    {
-        std::string result = std::to_string(me.first) + " " + std::to_string(me.second);
-        return std::string();
-    }
-
-}gm;
 
 static std::set<std::string> logged;
 
@@ -158,18 +122,10 @@ std::string RunCommand(std::string &srcStr)
 
     if (!cmd.command.compare(msg::START_GAME))
     {
-        if (gm.used)
-        {
-            result = gm.ToString();
-            gm.used = 0;
-        }
-        else 
-        {
-            gm.Gen(0, 10);
-            result = gm.ToString();
-            gm.Swap();
-            gm.used = 1;
-            gm.active = 1;
+        int pid = fork();
+
+        if (!pid){
+            execl("./room", "room", "5555", NULL);
         }
     }
 
@@ -183,45 +139,6 @@ std::string RunCommand(std::string &srcStr)
             std::map<std::string, int>::iterator it = stat.data.find(cmd.arg);
             result = std::to_string(it->second);
         }
-    }
-
-    if (!cmd.command.compare(msg::KILL))
-    {
-        if (gm.active)
-        {
-            std::stringstream strm;
-            std::string name;
-            strm << cmd.arg.data();
-
-            std::getline(strm, name, ' ');
-            std::string num = name;
-            getline(strm, name, ' ');
-
-            if (std::atoi(num.data()) > std::max(gm.enemy.first, gm.enemy.second))
-            {
-                result = "VICTORY";
-
-                if (stat.Member(name))
-                {
-                    std::map<std::string, int>::iterator it = stat.data.find(name);
-                    it->second += 1;
-                }
-                else {
-                    stat.data.insert(std::make_pair(name, 1));
-                }
-
-                gm.active = 0;
-            }
-            else {
-                result = "U R LOOSER";
-            }    
-        }
-        else {
-            result = "WE ARE NOT PLAYING";
-        }
-    }
-
-    if (!result.length()){
     }
 
     return result;
