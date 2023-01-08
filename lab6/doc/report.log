@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2023.1.6)  9 JAN 2023 02:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2023.1.6)  9 JAN 2023 02:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -654,139 +654,90 @@ enefit from \pgfplotsset{compat=1.18} (current compat level: 1.16).
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-4.def
 File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
 )
+(/usr/share/texmf-dist/tex/latex/ucs/data/uni-33.def
+File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
+)
+(/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 )
-(../include/zmq_utils.hpp
-Overfull \hbox (80.01549pt too wide) in paragraph at lines 13--15
+(../include/zmq_utils.hpp) [1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (../include/server_utils.h
+pp
+Overfull \hbox (157.54723pt too wide) in paragraph at lines 37--38
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+) [2] (../src/zmq_utils.cpp
+Overfull \hbox (143.45055pt too wide) in paragraph at lines 11--12
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (2.48375pt too wide) in paragraph at lines 17--18
+Overfull \hbox (51.82213pt too wide) in paragraph at lines 25--26
 [][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (16.58043pt too wide) in paragraph at lines 18--20
-[][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (157.54723pt too wide) in paragraph at lines 26--27
+[][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
-(../include/server_utils.hpp) (../include/utils.hpp [2] [3])
-(../src/zmq_utils.cpp
-Overfull \hbox (72.96715pt too wide) in paragraph at lines 8--9
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+) (../src/client.cpp [3]
+Overfull \hbox (157.54723pt too wide) in paragraph at lines 39--41
+[][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (65.91881pt too wide) in paragraph at lines 12--13
-[][][][][][][][][][][][][][][][][][] 
+[4]) (../src/server.cpp
+Overfull \hbox (58.87047pt too wide) in paragraph at lines 33--34
+[][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (220.98228pt too wide) in paragraph at lines 13--14
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+Overfull \hbox (178.69225pt too wide) in paragraph at lines 34--36
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[5] [6]
+Overfull \hbox (192.78893pt too wide) in paragraph at lines 79--80
+[][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (150.49889pt too wide) in paragraph at lines 16--17
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][] 
- []
-
-
-Overfull \hbox (206.8856pt too wide) in paragraph at lines 27--28
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[4]
-Overfull \hbox (80.01549pt too wide) in paragraph at lines 42--43
-[][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (58.87047pt too wide) in paragraph at lines 48--49
+Overfull \hbox (157.54723pt too wide) in paragraph at lines 80--82
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
 
-Overfull \hbox (58.87047pt too wide) in paragraph at lines 52--53
+Overfull \hbox (129.35387pt too wide) in paragraph at lines 87--89
 [][][][][][][][][][][][][][][][][][][][][][][][] 
  []
 
-
-Overfull \hbox (37.72545pt too wide) in paragraph at lines 76--77
-[][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (199.83727pt too wide) in paragraph at lines 77--78
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (220.98228pt too wide) in paragraph at lines 80--81
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][] 
- []
-
-[5]
-Overfull \hbox (185.74059pt too wide) in paragraph at lines 91--92
-[][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (2.48375pt too wide) in paragraph at lines 101--102
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-
-Overfull \hbox (16.58043pt too wide) in paragraph at lines 111--112
-[][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[6]) (../src/client.cpp [7]
-Overfull \hbox (101.1605pt too wide) in paragraph at lines 35--36
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-) [8] (../src/server.cpp [9]
-Overfull \hbox (213.93394pt too wide) in paragraph at lines 45--46
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-] 
- []
-
-[10] [11]
-Overfull \hbox (80.01549pt too wide) in paragraph at lines 139--140
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
- []
-
-[12]) [13] (./report.aux) ) 
+) [7] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 27018 strings out of 478238
- 660368 string characters out of 5850457
- 1250222 words of memory out of 5000000
- 44835 multiletter control sequences out of 15000+600000
- 476881 words of font info for 40 fonts, out of 8000000 for 9000
+ 27606 strings out of 478238
+ 666565 string characters out of 5850457
+ 1248264 words of memory out of 5000000
+ 45422 multiletter control sequences out of 15000+600000
+ 475634 words of font info for 38 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,6n,104p,726b,1730s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-s
-uper-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}<
-/usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texm
-f-dist/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/ty
-pe1/public/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-s
-uper/sfrm1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfti1200.p
-fb>
-Output written on report.pdf (13 pages, 122745 bytes).
+ 100i,6n,104p,726b,1664s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-
+ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</usr/
+share/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf-dis
+t/fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/cm-super/sfbx1728.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/
+sfrm1200.pfb>
+Output written on report.pdf (7 pages, 91616 bytes).
 PDF statistics:
- 83 PDF objects out of 1000 (max. 8388607)
- 55 compressed objects within 1 object stream
+ 56 PDF objects out of 1000 (max. 8388607)
+ 37 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
