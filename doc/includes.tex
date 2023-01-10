@@ -1,0 +1,22 @@
+\usepackage[utf8x]{inputenc}
+\usepackage[T1, T2A]{fontenc}
+\usepackage{fullpage}
+\usepackage{multicol,multirow}
+\usepackage{tabularx}
+\usepackage{ulem}
+\usepackage{listings} 
+\usepackage[english,russian]{babel}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{ulem} 
+
+\parindent=1cm
+\makeatletter
+\newcommand{\rindex}[2][\imki@jobname]{%
+	\index[#1]{\detokenize{#2}}%
+}
+\makeatother
+\newcolumntype{P}[1]{>{\raggedbottom\arraybackslash}p{#1}}
+
+\linespread{1}
+\pgfplotsset{compat=1.16}

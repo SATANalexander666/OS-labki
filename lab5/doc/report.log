@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2023.1.6)  9 JAN 2023 02:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022/Arch Linux) (preloaded format=pdflatex 2023.1.6)  10 JAN 2023 03:15
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -23,6 +23,9 @@ File: size12.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 \belowcaptionskip=\skip48
 \bibindent=\dimen138
 )
+(/usr/share/texmf-dist/tex/latex/import/import.sty
+Package: import 2020/04/01  v 6.2
+) (../../doc/includes.tex
 (/usr/share/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2021/02/14 v1.3d Input encoding file
 \inpenc@prehook=\toks16
@@ -594,37 +597,35 @@ File: tikzlibraryplotmarks.code.tex 2021/05/15 v3.1.9a (3.1.9a)
 
 (/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.code.tex
 File: pgflibraryplotmarks.code.tex 2021/05/15 v3.1.9a (3.1.9a)
-))) (/usr/share/texmf-dist/tex/latex/tools/indentfirst.sty
-Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
-)
-(/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+)))) (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2022-04-14 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count311
 \l__pdf_internal_box=\box114
-) (./report.aux)
+)
+(./report.aux)
 \openout1 = `report.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-(/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+LaTeX Font Info:    Checking defaults for T2A/cmr/m/n on input line 6.
+LaTeX Font Info:    ... okay on input line 6.
+ (/usr/share/texmf-dist/tex/latex/ucs/ucsencs.def
 File: ucsencs.def 2011/01/21 Fixes to fontencodings LGR, T3
 )
 \c@lstlisting=\count312
-LaTeX Info: Redefining \th on input line 27.
+LaTeX Info: Redefining \th on input line 6.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
@@ -651,43 +652,36 @@ e
 Package pgfplots notification 'compat/show suggested version=true': you might b
 enefit from \pgfplotsset{compat=1.18} (current compat level: 1.16).
 
-(/usr/share/texmf-dist/tex/latex/ucs/data/uni-4.def
+(../../doc/lab5_title.tex (/usr/share/texmf-dist/tex/latex/ucs/data/uni-4.def
 File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
+)
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <12> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 28.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 28.
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}])
+(/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
 )
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-33.def
 File: uni-33.def 2013/05/13 UCS: Unicode data U+2100..U+21FF
 )
-(/usr/share/texmf-dist/tex/latex/ucs/data/uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
 (/usr/share/texmf-dist/tex/latex/ucs/data/uni-32.def
 File: uni-32.def 2013/05/13 UCS: Unicode data U+2000..U+20FF
 )
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 62.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 62.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 62.
-
-Overfull \hbox (20.25215pt too wide) in paragraph at lines 62--63
-[]\T2A/cmr/m/n/12 Рассчет ин-те-гра-ла функ-ции $\OML/cmm/m/it/12 sin\OT1/cmr/m
-/n/12 (\OML/cmm/m/it/12 x\OT1/cmr/m/n/12 )$ \T2A/cmr/m/n/12 на от-рез-ке $\OT1/
-cmr/m/n/12 [\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 ]$ \T2A/cmr/m/n/12 с ша-гом $\
-OML/cmm/m/it/12 e$\T2A/cmr/m/n/12 : ($\OML/cmm/m/it/12 FloatSinIntegral$\T2A/cm
-r/m/n/12 ($\OML/cmm/m/it/12 float$
- []
-
 (/usr/share/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 )
 (/usr/share/texmf-dist/tex/latex/listings/lstmisc.sty
 File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
-) (../include/libLab5.h
-[1
-
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]) (../src/lib1.c)
-(../src/lib2.c [2]) (../src/program1.c [3]) (../src/program2.c
+) (../include/libLab5.h)
+[1] (../src/lib1.c) (../src/lib2.c [2]) (../src/program1.c) [3]
+(../src/program2.c
 Overfull \hbox (192.78893pt too wide) in paragraph at lines 30--32
 [][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
 ] 
@@ -700,13 +694,13 @@ Overfull \hbox (30.67711pt too wide) in paragraph at lines 54--55
 
 [5]) [6] (./report.aux) ) 
 Here is how much of TeX's memory you used:
- 27764 strings out of 478238
- 668106 string characters out of 5850457
- 1256319 words of memory out of 5000000
- 45569 multiletter control sequences out of 15000+600000
- 478072 words of font info for 46 fonts, out of 8000000 for 9000
+ 27797 strings out of 478238
+ 668600 string characters out of 5850457
+ 1254317 words of memory out of 5000000
+ 45595 multiletter control sequences out of 15000+600000
+ 477267 words of font info for 45 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 100i,6n,104p,726b,1726s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 106i,6n,114p,748b,1664s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-sup
 er-ts1.enc}{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t2a.enc}</u
 sr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf
@@ -715,10 +709,10 @@ e1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-dist/fonts/type1/public/cm-su
 per/sfbx1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1440.pf
 b></usr/share/texmf-dist/fonts/type1/public/cm-super/sfbx1728.pfb></usr/share/t
 exmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on report.pdf (6 pages, 119158 bytes).
+Output written on report.pdf (7 pages, 128371 bytes).
 PDF statistics:
- 66 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 71 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 
